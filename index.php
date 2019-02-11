@@ -21,6 +21,6 @@
 	}
 	require "modules/$module.php";
 	$module = 'Module_'.$module;
-	$page = new $module();
-	echo $page->render($c);
+	$page = new $module($c);
+	echo $page->render();
 ?>
