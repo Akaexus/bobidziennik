@@ -1,5 +1,6 @@
 <?php
 	require_once('db.php');
+	session_start();
 	$c = mysqli_connect($DB['host'], $DB['user'], $DB['pass'], $DB['db']);
 	if (!$c) {
 		die('błąd połączenia');
@@ -12,14 +13,14 @@
 	if (!isset($_GET['s'])) {
 		$module = $modules[0];
 	} else {
-		$module = isset($_GET['s']);
+		$module = $_GET['s'];
 	}
 	
-	if (!in_array($modules, $module)) {
+	if (!in_array($module, $modules)) {
 		$module = 'login';
 	}
 	require "modules/$module.php";
 	$module = 'Module_'.$module;
 	$page = new $module();
-	echo $page->render();
+	echo $page->render($c);
 ?>
