@@ -15,22 +15,17 @@ class Module_marks
 	{
 		$query = "select * from przedmiot";
 		$subjects = [];
-		$res = mysqli_query($c,$query);
-		while ($row = mysqli_fetch_array($res)) {
-			$subjects = $row['nazwa'];
-		}
-		print_r($subjects);
-	}
-
-	public function render()
-	{
-		$query = "select * from przedmiot";
-		$subjects = [];
 		$res = mysqli_query($this->c,$query);
 		while ($row = mysqli_fetch_array($res)) {
 			$subjects = $row['nazwa'];
 		}
-		print_r($subjects);
+		return print_r($subjects, 1);
+	}
+
+	public function render()
+	{
+		$output = $this->subjectsList();
+		return $output;
 	}
 }
 
