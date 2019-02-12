@@ -7,7 +7,8 @@
 	}
 
 	$modules = [
-		'login'
+		'login',
+		'marks'
 	];
 
 	if (!isset($_GET['s'])) {
