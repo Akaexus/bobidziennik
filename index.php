@@ -1,5 +1,6 @@
 <?php
 	require_once('db.php');
+	require_once('classes/User.class.php');
 	session_start();
 	$c = mysqli_connect($DB['host'], $DB['user'], $DB['pass'], $DB['db']);
 	if (!$c) {
