@@ -5,7 +5,6 @@
 	if (!$c) {
 		die('błąd połączenia');
 	}
-
 	$modules = [
 		'login',
 		'marks'
