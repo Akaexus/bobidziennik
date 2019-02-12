@@ -7,6 +7,7 @@
 	}
 	$modules = [
 		'login',
+		'logout',
 		'marks'
 	];
 
