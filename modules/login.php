@@ -38,6 +38,7 @@ HTML;
 				} else {
 					$user = $query->fetch_assoc();
 					$_SESSION['user_id'] = $user['id'];
+					$_SESSION['user'] = new User($user);
 					echo 'pomyślnie zalogowano';
 				}
 			}
