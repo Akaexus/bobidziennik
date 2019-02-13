@@ -18,26 +18,29 @@ class User
 
 	public function isNauczyciel($data)
 	{
-		global $c;
-		$query = mysqli_query($c,"SELECT * from nauczyciele where id_konta=$this->id");
-		if (mysqli_num_rows($query)>0) {
+		$teachers = DB::i()->select("SELECT * from nauczyciele where id_konta=$this->id");
+		if ($teachers) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 	public function isUczen($data)
 	{
-		global $c;
-		$query = mysqli_query($c,"SELECT * from uczen where id_konta=$this->id");
-		if (mysqli_num_rows($query)>0) {
+		$students = DB::i()->select("SELECT * from uczen where id_konta=$this->id");
+		if ($students) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
 	public static function load($id) {
 		global $c;
-		$query = $c->query('select * from users where id='.$id);
-		if (mysqli_num_rows($query)) {
-			return new User($query->fetch_assoc());
+		$user = $this->select('select * from users where id='.$id);
+		
+		if (mysqli_num_rows($user)) {
+			return new User($user[0]);
 		} else {
 			return false;
 		}

@@ -1,13 +1,6 @@
 <?php
 
 class Module_login {
-
-			public $c;
-
-			public function __construct($c) {
-				$this->c  = $c;
-			}
-
 	public function loginForm() {
 		$output = <<<HTML
 <form method="post">
@@ -32,11 +25,11 @@ HTML;
 			} else {
 				$login = $_POST['login'];
 				$pass = $_POST['pass'];
-				$query = $this->c->query("select * from users where login='$login' and pass='$pass'");
-				if (!mysqli_num_rows($query)) {
+				$accounts = DB::i()->select("select * from users where login='$login' and pass='$pass'");
+				if ($accounts==null) {
 					return $this->loginForm();
 				} else {
-					$user = $query->fetch_assoc();
+					$user = $accounts[0];
 					$_SESSION['user_id'] = $user['id'];
 					$_SESSION['user'] = new User($user);
 					echo 'pomyślnie zalogowano';

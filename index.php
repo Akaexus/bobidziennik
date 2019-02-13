@@ -1,11 +1,9 @@
 <?php
-	require_once('db.php');
+
 	require_once('classes/User.class.php');
+	require_once('classes/DB.class.php');
+
 	session_start();
-	$c = mysqli_connect($DB['host'], $DB['user'], $DB['pass'], $DB['db']);
-	if (!$c) {
-		die('błąd połączenia');
-	}
 	$modules = [
 		'login',
 		'logout',
@@ -23,6 +21,6 @@
 	}
 	require "modules/$module.php";
 	$module = 'Module_'.$module;
-	$page = new $module($c);
+	$page = new $module();
 	echo $page->render();
 ?>

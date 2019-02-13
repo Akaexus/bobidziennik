@@ -2,32 +2,17 @@
 
 class Module_marks 
 {
-	public $c;
 
-	public function __construct($c)
-	{
-		$this->c = $c;
-	}
 	
 	public function subjectsNames()
 	{
-		$query = "select nazwa from przedmiot";
-		$subjects = [];
-		$res = mysqli_query($this->c,$query);
-		while ($row = mysqli_fetch_array($res)) {
-			array_push($subjects, $row['nazwa']);
-		}
+		$subjects = DB::i()->select('select nazwa from przedmioty');
 		return print_r($subjects, 1);
 	}
 
 	public function subjectsIds()
 	{
-		$query = "select id from przedmiot";
-		$ids = [];
-		$res = mysqli_query($this->c,$query);
-		while ($row = mysqli_fetch_array($res)) {
-			array_push($ids, $row['id']);
-		}
+		$ids = DB::i()->select('select id from przedmioty');
 		return print_r($ids, 1);
 	}
 	
