@@ -1,6 +1,6 @@
 <?php
 
-class Module_marks 
+class Marks implements Controller
 {
 
 	

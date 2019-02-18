@@ -1,6 +1,6 @@
 <?php
 
-class Module_login {
+class Login implements Controller {
 	public function loginForm() {
 		$output = <<<HTML
 <form method="post">

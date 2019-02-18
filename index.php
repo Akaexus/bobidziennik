@@ -1,9 +1,10 @@
 <?php
 	require_once('models/User.class.php');
 	require_once('classes/DB.class.php');
+	require_once('controllers/controller.php');
 
 	session_start();
-	$modules = [
+	$controllers = [
 	    'login'=> [
 	        // g - guest
 	        // u - user
@@ -20,27 +21,26 @@
 ];
 
 	if (!isset($_GET['s'])) {
-		$module = array_keys($modules)[0];
+		$controller = array_keys($controllers)[0];
 	} else {
-		$module = $_GET['s'];
+		$controller = $_GET['s'];
 	}
 
-	if (!array_key_exists($module, $modules)) {
-		$module = 'login';
+	if (!array_key_exists($controller, $controllers)) {
+		$controller = 'login';
 	}
 
 	$allowed = false;
 	foreach (User::getPermissionMap() as $perm) {
-		if (in_array($perm, $modules[$module]['permissions'])) {
+		if (in_array($perm, $controllers[$controller]['permissions'])) {
 			$allowed = true;
 		}
 	}
 
 	if ($allowed) {
-		require "modules/$module.php";
-		
-		$module = 'Module_'.$module;
-		$page = new $module();
+		require "controllers/$controller.php";
+		$controller = ucfirst($controller);
+		$page = new $controller();
 		echo $page->render();
 	} else {
 		echo 'error brak dostępu';
