@@ -1,17 +1,15 @@
 <?php
 
-class logout implements Controller {
+class Logout implements Controller {
 
-	public function logout() {
+	public function _logout() {
 		User::logout();
 	}
 
 	public function render() {
 		if (User::loggedIn()) {
-			return $this->logout();
-			echo 'wylogowano';
-		} else {
-			echo 'najpierw się zaloguj';
+			$this->_logout();
+			Output::i()->add('wylogowano');
 		}
 	}
 }

@@ -18,18 +18,18 @@ HTML;
 
 	public function render() {
 		if (User::loggedIn()) {
-			return 'zalogowany';
+			Output::i()->add('zalogowany');
 		} else {
 			if (!isset($_POST['login']) && !isset($_POST['pass'])) {
-				return $this->loginForm();
+				Output::i()->add($this->loginForm());
 			} else {
 				$login = $_POST['login'];
 				$pass = $_POST['pass'];
 				$logged = User::login($login, $pass);
 				if ($logged) {
-					echo 'pomyślnie zalogowano';
+					Output::i()->redirect('/');
 				} else {
-					return $this->loginForm();
+					Output::i()->add($this->loginForm());
 				}
 			}
 		}

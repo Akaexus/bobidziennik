@@ -7,13 +7,13 @@ class Marks implements Controller
 	public function subjectsNames()
 	{
 		$subjects = DB::i()->select('select id,nazwa from przedmiot');
-		return print_r($subjects, 1);
+		Output::i()->add(print_r($subjects, 1));
 	}
 
 	public function subjectsIds()
 	{
 		$ids = DB::i()->select('select id from przedmiot');
-		return print_r($ids, 1);
+		Output::i()->add(print_r($ids, 1));
 	}
 	
 	public function studentMarks()
@@ -27,7 +27,7 @@ class Marks implements Controller
 
 		$output = $this->subjectsNames();
 
-		return $output;
+		Output::i()->add($output);
 	}
 }
 

@@ -1,8 +1,8 @@
 <?php
 	require_once('models/User.class.php');
 	require_once('classes/DB.class.php');
+	require_once('classes/Output.class.php');
 	require_once('controllers/controller.php');
-
 	session_start();
 	$controllers = [
 	    'login'=> [
@@ -18,7 +18,7 @@
 	    'marks' => [
 	    	'permissions'=> ['u']
 	    ]
-];
+	];
 
 	if (!isset($_GET['s'])) {
 		$controller = array_keys($controllers)[0];
@@ -41,8 +41,9 @@
 		require "controllers/$controller.php";
 		$controller = ucfirst($controller);
 		$page = new $controller();
-		echo $page->render();
+		$page->render();
 	} else {
-		echo 'error brak dostępu';
+		Output::i()->add('error brak dostępu');
 	}
+	Output::i()->render();
 ?>
