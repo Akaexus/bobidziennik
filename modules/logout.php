@@ -3,13 +3,13 @@
 class Module_logout {
 
 	public function logout() {
-		session_destroy();
-		return 'wylogowano';
+		User::logout();
 	}
 
 	public function render() {
-		if ($_SESSION['user_id']) {
+		if (User::loggedIn()) {
 			return $this->logout();
+			echo 'wylogowano';
 		} else {
 			echo 'najpierw się zaloguj';
 		}

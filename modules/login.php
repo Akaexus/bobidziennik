@@ -17,7 +17,7 @@ HTML;
 	}
 
 	public function render() {
-		if (isset($_SESSION['user_id'])) {
+		if (User::loggedIn()) {
 			return 'zalogowany';
 		} else {
 			if (!isset($_POST['login']) && !isset($_POST['pass'])) {
@@ -25,14 +25,11 @@ HTML;
 			} else {
 				$login = $_POST['login'];
 				$pass = $_POST['pass'];
-				$accounts = DB::i()->select("select * from users where login='$login' and pass='$pass'");
-				if ($accounts==null) {
-					return $this->loginForm();
-				} else {
-					$user = $accounts[0];
-					$_SESSION['user_id'] = $user['id'];
-					$_SESSION['user'] = new User($user);
+				$logged = User::login($login, $pass);
+				if ($logged) {
 					echo 'pomyślnie zalogowano';
+				} else {
+					return $this->loginForm();
 				}
 			}
 		}

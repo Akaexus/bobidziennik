@@ -9,13 +9,13 @@
 	        // u - user
 	        // s - student
 	        // t - teacher
-	        'permissions'=> ['g', 'u', 's', 't']
+	        'permissions'=> ['g']
 	    ],
 	    'logout' => [
-	    	'permissions'=> ['u', 's', 't']	
+	    	'permissions'=> ['u']	
 	    ],
 	    'marks' => [
-	    	'permissions'=> ['u', 's', 't']
+	    	'permissions'=> ['u']
 	    ]
 ];
 
@@ -29,25 +29,20 @@
 		$module = 'login';
 	}
 
-	require "modules/$module.php";
 	$allowed = false;
-	$logged = isset($_SESSION['user_id']);
-	if (in_array('g',$modules[$module]['permissions']) && !$logged) {
-		$allowed = true;
-	}
-	if ($logged) {
-		if (in_array('u',$modules[$module]['permissions'])) {
-			$allowed = true;
-		}
-		if (in_array('s',$modules[$module]['permissions']) && $_SESSION['user']->isUczen()) {
-			$allowed = true;
-		}
-		if (in_array('t',$modules[$module]['permissions']) && $_SESSION['user']->isNauczyciel()) {
+	foreach (User::getPermissionMap() as $perm) {
+		if (in_array($perm, $modules[$module]['permissions'])) {
 			$allowed = true;
 		}
 	}
-	
-	$module = 'Module_'.$module;
-	$page = new $module();
-	echo $page->render();
+
+	if ($allowed) {
+		require "modules/$module.php";
+		
+		$module = 'Module_'.$module;
+		$page = new $module();
+		echo $page->render();
+	} else {
+		echo 'error brak dostępu';
+	}
 ?>
