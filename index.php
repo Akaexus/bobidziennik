@@ -1,6 +1,6 @@
 <?php
 
-	require_once('classes/User.class.php');
+	require_once('models/User.class.php');
 	require_once('classes/DB.class.php');
 
 	session_start();
