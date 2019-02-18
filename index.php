@@ -20,11 +20,11 @@
 ];
 
 	if (!isset($_GET['s'])) {
-		$module = $modules[0];
+		$module = array_keys($modules)[0];
 	} else {
 		$module = $_GET['s'];
 	}
-	
+
 	if (!in_array($module, $modules)) {
 		$module = 'login';
 	}
