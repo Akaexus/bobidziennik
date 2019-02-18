@@ -6,7 +6,7 @@ class Module_marks
 	
 	public function subjectsNames()
 	{
-		$subjects = DB::i()->select('select nazwa from przedmiot');
+		$subjects = DB::i()->select('select id,nazwa from przedmiot');
 		return print_r($subjects, 1);
 	}
 
@@ -18,7 +18,8 @@ class Module_marks
 	
 	public function studentMarks()
 	{
-		# code...
+		$output = $this->subjectsNames();
+		$marks = DB::i()->select('select ocena from oceny where id_przedmiotu='.$this->subjects[id]);
 	}
 
 	public function render()
