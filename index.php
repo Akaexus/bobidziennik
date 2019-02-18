@@ -25,9 +25,10 @@
 		$module = $_GET['s'];
 	}
 
-	if (!in_array($module, $modules)) {
+	if (!array_key_exists($module, $modules)) {
 		$module = 'login';
 	}
+
 	require "modules/$module.php";
 	$allowed = false;
 	$logged = isset($_SESSION['user_id']);
@@ -46,9 +47,6 @@
 		}
 	}
 	
-
-
-
 	$module = 'Module_'.$module;
 	$page = new $module();
 	echo $page->render();
