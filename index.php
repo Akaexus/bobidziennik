@@ -5,6 +5,9 @@
 	require_once('controllers/controller.php');
 	session_start();
 	$controllers = [
+		'devboard'=> [
+			'permissions'=> ['u']
+		],
 	    'login'=> [
 	        // g - guest
 	        // u - user
