@@ -54,7 +54,7 @@ class User extends ActiveRecord
 	public static function login($login, $password) {
 		$accounts = DB::i()->select("select * from users where login='$login' and pass='$password'");
 		if ($accounts==null) {
-			return $this->loginForm();
+			return null;
 		} else {
 			$user = new User($accounts[0]);
 			$_SESSION['user'] = $user;
