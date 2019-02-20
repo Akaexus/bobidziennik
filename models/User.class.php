@@ -3,9 +3,9 @@ require_once('ActiveRecord.class.php');
 class User extends ActiveRecord
 {
 
-	protected static $databaseTable = 'users';
-	protected static $idColumn = 'id';
-	protected static $columnNames = [
+	public static $databaseTable = 'users';
+	public static $idColumn = 'id';
+	public static $columnNames = [
 		'id',
 		'email',
 		'pass',

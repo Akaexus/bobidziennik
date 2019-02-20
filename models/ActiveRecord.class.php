@@ -1,9 +1,9 @@
 <?php
 
 abstract class ActiveRecord {
-	protected static $databaseTable;
-	protected static $idColumn;
-	protected static $columnNames;
+	public static $databaseTable;
+	public static $idColumn;
+	public static $columnNames;
 
 	public function __construct($data) {
 		foreach ($data as $key => $value) {
@@ -28,7 +28,7 @@ abstract class ActiveRecord {
 	}
 
 	public static function load($id) {
-		$entity = DB::i()->select("select ".implode(',', static::$columnNames)." from {static::$databaseTable} where {static:$idColumn}='{$id}' limit 1");
+		$entity = DB::i()->select("select ".implode(',', static::$columnNames)." from ".static::$databaseTable." where ".static::$idColumn."='{$id}' limit 1");
 		if (!$entity) {
 			throw new Exception;
 		} else {
