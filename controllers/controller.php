@@ -7,7 +7,7 @@ abstract class Controller {
 	public function __construct() {
 		if (array_key_exists('do', $_GET)) {
 			$req = $_GET['do'];
-			if (!strlen($req) || $req[0] = '_') {
+			if (strlen($req) === 0 || $req[0] === '_') {
 				$this->execute();
 			} else {
 				if (method_exists($this, $req)) {
