@@ -14,4 +14,17 @@ class Student extends ActiveRecord {
 		'pesel',
 		'photo',
 	];
+	public function getMarks($subject = NULL) {
+		$whereClause = ['id_ucznia = '.$this->getId()];
+		if ($subject) {
+			if ($subject instanceof Subject) {
+				$whereClause[] = 'id_przedmiotu = '.$subject->getId();
+			} else {
+				$whereClause[] = 'id_przedmiotu = '.$subject;
+			}
+		}
+		$whereClause = implode(' AND ', $whereClause);
+		$marks = DB::i()->select('select * from '.Mark::$databaseTable.' where '.$whereClause);
+		return $marks;
+	}
 }

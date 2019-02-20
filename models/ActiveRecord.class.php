@@ -11,6 +11,11 @@ abstract class ActiveRecord {
 		}
 	}
 
+	public function getId() {
+		$idColumn = static::$idColumn;
+		return $this->$idColumn;
+	}
+
 	public function save() {
 		$idColumn = static::$idColumn;
 		$values = [];
