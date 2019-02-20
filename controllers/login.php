@@ -16,7 +16,7 @@ HTML;
 		return $output;
 	}
 
-	public function render() {
+	public function execute() {
 		if (User::loggedIn()) {
 			Output::i()->add('zalogowany');
 		} else {

@@ -22,7 +22,7 @@ class Marks implements Controller
 		$marks = DB::i()->select('select ocena from oceny where id_przedmiotu='.$this->subjects[id]);
 	}
 
-	public function render()
+	public function execute()
 	{
 
 		$output = $this->subjectsNames();

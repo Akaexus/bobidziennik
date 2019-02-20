@@ -6,7 +6,7 @@ class Logout implements Controller {
 		User::logout();
 	}
 
-	public function render() {
+	public function execute() {
 		if (User::loggedIn()) {
 			$this->_logout();
 			Output::i()->add('wylogowano');
