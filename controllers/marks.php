@@ -1,6 +1,6 @@
 <?php
 
-class Marks implements Controller
+class Marks extends Controller
 {
 
 	

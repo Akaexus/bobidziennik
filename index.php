@@ -48,7 +48,6 @@
 		require "controllers/$controller.php";
 		$controller = ucfirst($controller);
 		$page = new $controller();
-		$page->render();
 	} else {
 		Output::i()->add('error brak dostępu');
 	}

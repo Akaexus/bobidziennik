@@ -1,6 +1,6 @@
 <?php
 
-class Logout implements Controller {
+class Logout extends Controller {
 
 	public function _logout() {
 		User::logout();

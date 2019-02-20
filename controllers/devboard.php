@@ -1,6 +1,6 @@
 <?php
 
-class Devboard {
+class Devboard extends Controller {
 	public function execute() {
 		Output::i()->add('<pre>');
 		$class = StudentClass::load(1);
