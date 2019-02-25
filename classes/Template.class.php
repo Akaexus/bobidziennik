@@ -7,7 +7,7 @@ class Template {
 		$this->controller = $controller;
 		$this->templateName = $templateName;
 	}
-	public function render($params) {
+	public function render($params = []) {
 		extract($params);
 		ob_start();
 		require BD_ROOT_PATH . "templates/{$this->controller}/{$this->templateName}.phtml";
