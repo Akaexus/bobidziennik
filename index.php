@@ -2,17 +2,17 @@
 
 	define('BD_ROOT_PATH', __DIR__.'/');
 	require_once('autoload.php');
-	
+
 	session_start();
+    // g - guest
+    // u - user
+    // s - student
+    // t - teacher
 	$controllers = [
 		'devboard'=> [
 			'permissions'=> ['u']
 		],
 	    'login'=> [
-	        // g - guest
-	        // u - user
-	        // s - student
-	        // t - teacher
 	        'permissions'=> ['g']
 	    ],
 	    'logout' => [
@@ -25,11 +25,14 @@
 	    	'permissions'=> ['u']
 	    ]
 	];
-
-	if (!isset($_GET['s'])) {
-		$controller = array_keys($controllers)[0];
+	if (!User::loggedIn()) {
+		$controller = 'login';
 	} else {
-		$controller = $_GET['s'];
+		if (!isset($_GET['s'])) {
+			$controller = array_keys($controllers)[0];
+		} else {
+			$controller = $_GET['s'];
+		}
 	}
 
 	if (!array_key_exists($controller, $controllers)) {
