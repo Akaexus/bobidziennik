@@ -1,5 +1,4 @@
 <?php
-	require_once('db.php');
 
 	class DB {
 		public $config;
@@ -33,7 +32,7 @@
 		public static $instance;
 		static function i() {
 			if (self::$instance === null) {
-				global $DB;
+				require_once(BD_ROOT_PATH.'db.php');
 				self::$instance = new DB($DB);
 			}
 			return self::$instance;
