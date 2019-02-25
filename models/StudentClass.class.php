@@ -21,6 +21,7 @@ class StudentClass extends ActiveRecord {
 		return $students;
 	}
 
+
 	public function leadingTeacher() {
 		return Teacher::load($this->wychowawca);
 	}

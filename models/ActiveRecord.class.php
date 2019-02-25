@@ -42,5 +42,10 @@ abstract class ActiveRecord {
 		$class = get_called_class();
 		return new $class($entity);
 	}
+
+	public function delete() {
+		$idColumn = static::$idColumn;
+		DB::i()->query('delete from '.static::$databaseTable.' where '.$idColumn.'='.$this->$idColumn);
+	}
 }
 

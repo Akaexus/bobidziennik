@@ -1,3 +1,4 @@
+<h2>Lista klas</h2>
 <table>
 	<thead>
 		<tr>
@@ -6,15 +7,27 @@
 			<th>Symbol</th>
 			<th>Wychowawca</th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($classes as $class): ?>
 			<tr>
-				<td><?php echo $class->nazwa; ?>
-				<td><?php echo $class->rok; ?>
-				<td><?php echo $class->symbol; ?>
-				<td><?php echo $class->leadingTeacher(); ?>
+				<td><?php echo $class->nazwa; ?></td>
+				<td><?php echo $class->rok; ?></td>
+				<td><?php echo $class->symbol; ?></td>
+				<td><?php echo $class->leadingTeacher(); ?></td>
+				<td>
+					<a href="?s=studentClasses&do=manage&id=<?php echo $class->id; ?>">
+						Zarządzaj klasą
+					</a>
+				</td>
+				<td>
+					<a href="?s=studentClasses&do=overview&id=<?php echo $class->id; ?>">
+						Wyświetl uczniów
+					</a>
+				</td>
+
 			</tr>
 		<?php endforeach; ?>
 	</tbody>

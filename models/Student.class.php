@@ -14,6 +14,12 @@ class Student extends ActiveRecord {
 		'pesel',
 		'photo',
 	];
+
+	public function __toString() {
+		return "{$this->imie} {$this->nazwisko}";
+	}
+
+
 	public function getMarks($subject = NULL) {
 		$whereClause = ['id_ucznia = '.$this->getId()];
 		if ($subject) {
