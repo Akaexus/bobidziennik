@@ -1,0 +1,21 @@
+<table>
+	<thead>
+		<tr>
+			<th>Nazwa</th>
+			<th>Rok</th>
+			<th>Symbol</th>
+			<th>Wychowawca</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($classess as $class): ?>
+			<tr>
+				<td><?php echo $class->nazwa; ?>
+				<td><?php echo $class->rok; ?>
+				<td><?php echo $class->symbol; ?>
+				<td><?php echo $class->leadingTeacher(); ?>
+			</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>

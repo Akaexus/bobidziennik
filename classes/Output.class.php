@@ -35,6 +35,10 @@ class Output {
 		echo $output;
 	}
 
+	public function getTemplate($controller, $templateName) {
+		return new Template($controller, $templateName);
+	}
+
 	public static $instance;
 	static function i() {
 		if (self::$instance === null) {
