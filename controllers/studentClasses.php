@@ -34,10 +34,17 @@ class StudentClasses extends Controller {
 		return $output;
 	}
 
-	public function execute() {
+	public function classesList() {
 		$classes = array_map(function($student) {
 			return new StudentClass($student);
 		}, DB::i()->select('select * from '.StudentClass::$databaseTable));
-		Output::i()->add($this->_createTable($classes));
+		$template = Output::i()->getTemplate('studentClasses', 'list');
+		Output::i()->add($template->render([
+			'classes'=> $classes
+		]));
+	}
+
+	public function execute() {
+		$this->classesList();
 	}
 }

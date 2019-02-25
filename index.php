@@ -1,6 +1,6 @@
 <?php
 
-	define('BD_ROOT_PATH', dirname(__DIR__).'/');
+	define('BD_ROOT_PATH', __DIR__.'/');
 	require_once('models/User.class.php');
 	require_once('models/StudentClass.class.php');
 	require_once('models/Student.class.php');
