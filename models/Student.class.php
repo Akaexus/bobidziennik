@@ -30,7 +30,13 @@ class Student extends ActiveRecord {
 			}
 		}
 		$whereClause = implode(' AND ', $whereClause);
-		$marks = DB::i()->select('select * from '.Mark::$databaseTable.' where '.$whereClause);
+		$marks = DB::i()->select([
+			'select'=> '*',
+			'from'=> Mark::$databaseTable,
+			'where'=> [
+				['id_przedmiotu=?', ($subject instanceof Subject ? $subject->getId() : $subject)]
+			]
+		]);
 		return $marks;
 	}
 }

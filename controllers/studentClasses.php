@@ -6,7 +6,10 @@ class StudentClasses extends Controller {
 	public function list() {
 		$classes = array_map(function($student) {
 			return new StudentClass($student);
-		}, DB::i()->select('select * from '.StudentClass::$databaseTable));
+		}, DB::i()->select([
+			'select'=> '*',
+			'from'=> StudentClass::$databaseTable
+		]));
 		$template = Output::i()->getTemplate('studentClasses', 'list');
 		Output::i()->add($template->render([
 			'classes'=> $classes

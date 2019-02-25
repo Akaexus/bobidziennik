@@ -14,7 +14,13 @@ class User extends ActiveRecord
 
 	public function isNauczyciel()
 	{
-		$teachers = DB::i()->select("SELECT * from nauczyciel where id_konta=$this->id");
+		$teachers = DB::i()->select([
+			'select'=> '*',
+			'from'=> Teacher::$databaseTable,
+			'where'=> [
+				['id_konta=?', $this->id]
+			]
+		]);
 		if ($teachers) {
 			return true;
 		} else {
@@ -24,7 +30,13 @@ class User extends ActiveRecord
 
 	public function isUczen()
 	{
-		$students = DB::i()->select("SELECT * from uczen where id_konta=$this->id");
+		$students = DB::i()->select([
+			'select'=> '*',
+			'from'=> Student::$databaseTable,
+			'where'=> [
+				['id_konta=?', $this->id]
+			]
+		]);
 		if ($students) {
 			return true;
 		} else {
@@ -52,7 +64,14 @@ class User extends ActiveRecord
 	}
 
 	public static function login($login, $password) {
-		$accounts = DB::i()->select("select * from users where login='$login' and pass='$password'");
+		$accounts = DB::i()->select([
+			'select'=> '*',
+			'from'=> static::$databaseTable,
+			'where'=> [
+				['login=?', $login],
+				['pass=?', $password]
+			]
+		]);
 		if ($accounts==null) {
 			return null;
 		} else {
