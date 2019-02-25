@@ -2,6 +2,7 @@
 	require_once('models/User.class.php');
 	require_once('models/StudentClass.class.php');
 	require_once('models/Student.class.php');
+	require_once('models/Teacher.class.php');
 	require_once('models/Subject.class.php');
 	require_once('models/Mark.class.php');
 	require_once('classes/DB.class.php');
@@ -23,6 +24,9 @@
 	    	'permissions'=> ['u']	
 	    ],
 	    'marks' => [
+	    	'permissions'=> ['u']
+	    ],
+	    'studentClasses' => [
 	    	'permissions'=> ['u']
 	    ]
 	];

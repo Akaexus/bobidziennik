@@ -21,6 +21,10 @@ class StudentClass extends ActiveRecord {
 		return $students;
 	}
 
+	public function leadingTeacher() {
+		return Teacher::load($this->wychowawca);
+	}
+
 	public function getSubjects() {
 		$columnID = static::$idColumn;
 		$subjectsIDs = array_map(function($s) {
