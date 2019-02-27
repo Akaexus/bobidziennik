@@ -25,33 +25,21 @@
 	    	'permissions'=> ['u']
 	    ]
 	];
-	if (!User::loggedIn()) {
-		$controller = 'login';
-	} else {
-		if (!isset($_GET['s'])) {
-			$controller = array_keys($controllers)[0];
-		} else {
-			$controller = $_GET['s'];
-		}
-	}
-
-	if (!array_key_exists($controller, $controllers)) {
-		$controller = 'login';
-	}
 
 	$allowed = false;
 	foreach (User::getPermissionMap() as $perm) {
-		if (in_array($perm, $controllers[$controller]['permissions'])) {
+		if (in_array($perm, Controller::$controllers[Request::i()->controller]['permissions'])) {
 			$allowed = true;
 		}
 	}
 
 	if ($allowed) {
-		require "controllers/$controller.php";
-		$controller = ucfirst($controller);
+		require "controllers/".Request::i()->controller.".php";
+		$controller = ucfirst(Request::i()->controller);
 		$page = new $controller();
 	} else {
 		Output::i()->add('error brak dostępu');
 	}
 	Output::i()->render();
+	Request::i();
 ?>
