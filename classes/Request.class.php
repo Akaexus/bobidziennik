@@ -18,7 +18,7 @@ class Request {
 		}
 
 		if(User::loggedIn()) {
-			if (array_key_exists($data['s'], Controller::$controllers)) {
+			if (array_key_exists('s', $data) && array_key_exists($data['s'], Controller::$controllers)) {
 				$this->controller = $data['s'];
 			} else {
 				$this->controller = array_keys(Controller::$controllers)[0];
