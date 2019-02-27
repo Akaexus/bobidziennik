@@ -41,5 +41,4 @@
 		Output::i()->add('error brak dostępu');
 	}
 	Output::i()->render();
-	Request::i();
 ?>
