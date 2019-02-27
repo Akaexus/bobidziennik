@@ -11,7 +11,7 @@ class Request {
 		$data = array_merge($_POST, $_GET);
 		foreach ($data as $key => $value) {
 			if (!in_array($key, $this->__protectedProperties) && preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/', $key)) {
-				$this->$key = $value;		
+				$this->$key = trim(htmlspecialchars($value));		
 			} else {
 				unset($data[$key]);
 			}
