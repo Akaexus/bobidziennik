@@ -29,7 +29,7 @@ class StudentClass extends ActiveRecord {
 
 
 	public function leadingTeacher() {
-		return Teacher::load($this->wychowawca);
+		return Teacher::load();
 	}
 
 	public function getSubjects() {
