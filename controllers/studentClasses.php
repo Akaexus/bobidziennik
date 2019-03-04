@@ -27,5 +27,11 @@ class StudentClasses extends Controller {
 	}
 
 	public function execute() {
+
+	}
+
+	public function manage()
+	{
+		# code...
 	}
 }

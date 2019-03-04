@@ -6,10 +6,14 @@ class Logout extends Controller {
 		User::logout();
 	}
 
-	public function execute() {
+	public function manage() {
 		if (User::loggedIn()) {
 			$this->_logout();
 			Output::i()->add('wylogowano');
 		}
+	}
+	public function execute()
+	{
+		# code...
 	}
 }

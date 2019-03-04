@@ -16,9 +16,14 @@ class StudentStats extends Controller
 	}
 	
 
-	public function execute()
+	public function manage()
 	{
 		$this->studentId = $_GET['id'];
+	}
+
+	public function execute()
+	{
+		# code...
 	}
 
 }

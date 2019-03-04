@@ -34,12 +34,16 @@ class Marks extends Controller
 		]);
 	}
 
-	public function execute()
+	public function manage()
 	{
 
 		$output = $this->subjectsNames();
 
 		Output::i()->add($output);
+	}
+	public function execute()
+	{
+		# code...
 	}
 }
 
