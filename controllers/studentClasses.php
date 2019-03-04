@@ -3,19 +3,6 @@
 
 class StudentClasses extends Controller {
 
-	public function list() {
-		$classes = array_map(function($student) {
-			return new StudentClass($student);
-		}, DB::i()->select([
-			'select'=> '*',
-			'from'=> StudentClass::$databaseTable
-		]));
-		$template = Output::i()->getTemplate('studentClasses', 'list');
-		Output::i()->add($template->render([
-			'classes'=> $classes
-		]));
-	}
-
 	public function overview() {
 		$classID = $_GET['id'];
 		$class = StudentClass::load($classID);
@@ -30,8 +17,30 @@ class StudentClasses extends Controller {
 
 	}
 
+	public function addClass() {
+		$teachers = array_map(function($teacher) {
+			return Teacher::load($teacher['id']);
+		}, DB::i()->select([
+			'select'=> 'id',
+			'from'=> Teacher::$databaseTable
+		]));
+		$template = Output::i()->getTemplate('studentClasses', 'add');
+		Output::i()->add($template->render([
+			'teachers'=> $teachers
+		]));
+	}
+
 	public function manage()
 	{
-		# code...
+		$classes = array_map(function($student) {
+			return new StudentClass($student);
+		}, DB::i()->select([
+			'select'=> '*',
+			'from'=> StudentClass::$databaseTable
+		]));
+		$template = Output::i()->getTemplate('studentClasses', 'list');
+		Output::i()->add($template->render([
+			'classes'=> $classes
+		]));
 	}
 }

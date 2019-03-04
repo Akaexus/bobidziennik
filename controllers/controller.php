@@ -34,7 +34,7 @@ abstract class Controller {
 				if (method_exists($this, $req)) {
 					$this->$req();
 				} else {
-					$this->execute();
+					$this->manage();
 				}
 			}
 		} else {

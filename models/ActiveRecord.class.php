@@ -4,7 +4,7 @@ abstract class ActiveRecord {
 	public static $databaseTable;
 	public static $idColumn;
 	public static $columnNames;
-
+	public $_new = false;
 	public function __construct($data) {
 		foreach ($data as $key => $value) {
 			$this->$key = $value;
@@ -19,17 +19,25 @@ abstract class ActiveRecord {
 	public function save() {
 		$idColumn = static::$idColumn;
 		$values = [];
-		foreach (static::$columnNames as $column) {
-			$values[] = $this->$column;
+		if (!$this->_new) {
+			foreach (static::$columnNames as $column) {
+				$values[] = $this->$column;
+			}
+			$query = 'update '.static::$databaseTable.' set ';
+			$params = [];
+			foreach (static::$columnNames as $column) {
+				$params[] = "{$column}='{$this->$column}'";
+			}
+			$query .= implode(',', $params);
+			$query .= ' where '.static::$idColumn.'='.$this->$idColumn;
+			DB::i()->query($query);
+		} else {
+			$values = [];
+			foreach (static::$columnNames as $column) {
+				$values[$column] = $this->$column;
+			}
+			DB::i()->insert(static::$databaseTable, $values);
 		}
-		$query = 'update '.static::$databaseTable.' set ';
-		$params = [];
-		foreach (static::$columnNames as $column) {
-			$params[] = "{$column}='{$this->$column}'";
-		}
-		$query .= implode(',', $params);
-		$query .= ' where '.static::$idColumn.'='.$this->$idColumn;
-		DB::i()->query($query);
 	}
 
 	public static function load($id) {
@@ -56,4 +64,3 @@ abstract class ActiveRecord {
 		DB::i()->query('delete from '.static::$databaseTable.' where '.$idColumn.'='.$this->$idColumn);
 	}
 }
-

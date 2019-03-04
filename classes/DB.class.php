@@ -22,18 +22,6 @@
 			return $this->c->query($q);
 		}
 
-		public function insert($table, $values) {
-			$query = "INSERT INTO {$table} ("
-			.implode(',', array_keys($values))
-			.') VALUES('
-			.implode(',', array_map(function() {
-				return '?';
-			}, array_keys($values)))
-			.')';
-			$stmt = $this->c->prepare($query);
-			$stmt->execute(...array_values($values));
-			$stmt = null;
-		}
 
 		public function delete($data) {
 			$where = $this->compileWhere($data['where']);
@@ -115,6 +103,19 @@
 				}
 			}
 			return $where;
+		}
+
+		public function insert($table, $values) {
+			$query = "INSERT INTO {$table} ("
+			.implode(',', array_keys($values))
+			.') VALUES('
+			.implode(',', array_map(function() {
+				return '?';
+			}, array_keys($values)))
+			.')';
+			$stmt = $this->c->prepare($query);
+			$stmt->execute(...array_values($values));
+			$stmt = null;
 		}
 
 		// SINGLETON
