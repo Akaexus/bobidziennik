@@ -19,6 +19,11 @@ class Student extends ActiveRecord {
 		return "{$this->imie} {$this->nazwisko}";
 	}
 
+	public function getClass()
+	{
+		$studentClass = studentClass::load($this->id_klasy);
+		return $studentClass;
+	}
 
 	public function getMarks($subject = NULL) {
 		$whereClause = ['id_ucznia = '.$this->getId()];

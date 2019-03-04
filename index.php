@@ -23,6 +23,9 @@
 	    ],
 	    'studentClasses' => [
 	    	'permissions'=> ['u']
+	    ],
+	    'studentStats' => [
+	    	'permissions'=> ['u']
 	    ]
 	];
 	if (!User::loggedIn()) {
