@@ -1,7 +1,7 @@
 <?php
 
 class Login extends Controller{
-	public function execute() {
+	public function manage() {
 		if (User::loggedIn()) {
 			Output::i()->add('zalogowany');
 		} else {
@@ -19,5 +19,9 @@ class Login extends Controller{
 				}
 			}
 		}
+	}
+	public function execute()
+	{
+		# code...
 	}
 }
