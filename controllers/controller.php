@@ -11,14 +11,17 @@ abstract class Controller {
 	        'permissions'=> ['g']
 	    ],
 	    'logout' => [
-	    	'permissions'=> ['u']	
+	    	'permissions'=> ['u']
 	    ],
 	    'marks' => [
 	    	'permissions'=> ['u']
 	    ],
 	    'studentClasses' => [
 	    	'permissions'=> ['u']
-	    ]
+	    ],
+			'studentStats' => [
+				'permissions'=> ['u']
+			]
 	];
 	abstract public function execute();
 	public function __construct() {

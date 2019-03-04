@@ -14,7 +14,7 @@ class StudentStats extends Controller
 			'studentClass'=> $studentClass
 		]));
 	}
-	
+
 
 	public function manage()
 	{
