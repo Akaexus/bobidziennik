@@ -3,6 +3,23 @@
 
 
 abstract class Controller {
+	public static $controllers = [
+		'devboard'=> [
+			'permissions'=> ['u']
+		],
+	    'login'=> [
+	        'permissions'=> ['g']
+	    ],
+	    'logout' => [
+	    	'permissions'=> ['u']	
+	    ],
+	    'marks' => [
+	    	'permissions'=> ['u']
+	    ],
+	    'studentClasses' => [
+	    	'permissions'=> ['u']
+	    ]
+	];
 	abstract public function execute();
 	public function __construct() {
 		$this->execute();

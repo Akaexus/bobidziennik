@@ -121,7 +121,7 @@
 		public static $instance;
 		static function i() {
 			if (self::$instance === null) {
-				require_once(BD_ROOT_PATH.'db.php');
+				require(BD_ROOT_PATH.'db.php');
 				self::$instance = new DB($DB);
 			}
 			return self::$instance;
