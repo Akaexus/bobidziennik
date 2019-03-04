@@ -3,27 +3,31 @@
 
 class StudentStats extends Controller
 {
-	public function MarksOverview()
+	public function marksOverview()
 	{
 		$student = Student::load($this->studentId);
 		$studentClass = $student->getClass();
+		// print_r($studentClass);
+		$studentLeader = Teacher::load($studentClass->wychowawca);
+		// print_r($studentLeader);
 
 		$template = Output::i()->getTemplate('StudentStats', 'stats');
 		Output::i()->add($template->render([
 			'student'=> $student,
-			'studentClass'=> $studentClass
+			'studentClass'=> $studentClass,
+			'studentLeader'=> $studentLeader
 		]));
 	}
 
 
 	public function manage()
 	{
-		$this->studentId = $_GET['id'];
+
 	}
 
 	public function execute()
 	{
-		# code...
+		$this->studentId = $_GET['id'];
 	}
 
 }

@@ -25,6 +25,16 @@ class Student extends ActiveRecord {
 		return $studentClass;
 	}
 
+	// public function leadingTeacher() {
+	// 	return Teacher::load($this->wychowawca);
+	// }
+
+	public function getLeader()
+	{
+		$studentLeader = studentClass::load($this->wychowawca);
+		return $studentLeader;
+	}
+
 	public function getMarks($subject = NULL) {
 		$whereClause = ['id_ucznia = '.$this->getId()];
 		if ($subject) {
