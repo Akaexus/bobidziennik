@@ -19,7 +19,20 @@ abstract class ActiveRecord {
 	public function save() {
 		$idColumn = static::$idColumn;
 		$values = [];
-		if (!$this->_new) {
+		if ($this->_new) {
+			$columnNames = static::$columnNames;
+			unset($columnNames[array_search(static::$idColumn, $columnNames)]);
+
+			$values = [];
+			foreach ($columnNames as $column) {
+				$values[$column] = $this->$column;
+			}
+			$id = DB::i()->insert(static::$databaseTable, $values);
+			if ($id) {
+				$this->id = $id;
+			}
+			return $id;
+		} else {
 			foreach (static::$columnNames as $column) {
 				$values[] = $this->$column;
 			}
@@ -32,15 +45,6 @@ abstract class ActiveRecord {
 			$query .= implode(',', $params);
 			$query .= ' where '.static::$idColumn.'='.$this->$idColumn;
 			return DB::i()->query($query);
-		} else {
-			$columnNames = static::$columnNames;
-			unset($columnNames[array_search(static::$idColumn, $columnNames)]);
-
-			$values = [];
-			foreach ($columnNames as $column) {
-				$values[$column] = $this->$column;
-			}
-			return DB::i()->insert(static::$databaseTable, $values);
 		}
 	}
 
