@@ -2,6 +2,7 @@
 
 	define('BD_ROOT_PATH', __DIR__.'/');
 	require_once('autoload.php');
+	require_once('vendor/autoload.php');
 
 	session_start();
     // g - guest
@@ -16,7 +17,7 @@
 	        'permissions'=> ['g']
 	    ],
 	    'logout' => [
-	    	'permissions'=> ['u']	
+	    	'permissions'=> ['u']
 	    ],
 	    'marks' => [
 	    	'permissions'=> ['u']
