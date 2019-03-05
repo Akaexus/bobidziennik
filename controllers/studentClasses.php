@@ -6,11 +6,11 @@ class StudentClasses extends Controller {
 	public function overview() {
 		$classID = $_GET['id'];
 		$class = StudentClass::load($classID);
-		$template = Output::i()->getTemplate('studentClasses', 'overview');
-		Output::i()->add($template->render([
+		$template = Output::i()->renderTemplate('studentClasses', 'overview', [
 			'class'=> $class,
 			'students'=> $class->getStudents()
-		]));
+		]);
+		Output::i()->add($template);
 	}
 
 	public function _getForm($defaultValues = null) {
@@ -35,10 +35,10 @@ class StudentClasses extends Controller {
 			$id = $studentClass->save();
 			Output::i()->redirect('?s=studentClasses&id='.$id);
 		} else {
-			$template = Output::i()->getTemplate('studentClasses', 'add');
-			Output::i()->add($template->render([
+			$template = Output::i()->renderTemplate('studentClasses', 'add', [
 				'form'=> $form
-			]));
+			]);
+			Output::i()->add($template);
 		}
 	}
 
@@ -50,9 +50,9 @@ class StudentClasses extends Controller {
 			'select'=> '*',
 			'from'=> StudentClass::$databaseTable
 		]));
-		$template = Output::i()->getTemplate('studentClasses', 'list');
-		Output::i()->add($template->render([
+		$template = Output::i()->renderTemplate('studentClasses', 'list', [
 			'classes'=> $classes
-		]));
+		]);
+		Output::i()->add($template);
 	}
 }

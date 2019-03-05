@@ -1,6 +1,7 @@
 <?php
 
 	define('BD_ROOT_PATH', __DIR__.'/');
+	define('DEV_MODE', true);
 	require_once('autoload.php');
 	require_once('vendor/autoload.php');
 

@@ -1,26 +1,26 @@
-<h2>Klasa <?php echo $class->symbol; ?></h2>
+<h2>Klasa {$class->symbol}</h2>
 <table>
 	<tbody>
 		<tr>
 			<td>Wychowawca</td>
-			<td><?php echo $class->leadingTeacher(); ?></td>
+			<td>{$class->leadingTeacher()}</td>
 		</tr>
 		<tr>
 			<td>Rok</td>
-			<td><?php echo $class->rok; ?></td>
+			<td>{$class->rok}</td>
 		</tr>
 		<tr>
 			<td>Nazwa</td>
-			<td><?php echo $class->nazwa; ?></td>
+			<td>{$class->nazwa}</td>
 		</tr>
 		<tr>
 			<td>Liczba uczniów</td>
-			<td><?php echo count($students); ?></td>
+			<td>{count($students)}</td>
 		</tr>
 	</tbody>
 </table>
 
-<?php if (count($students)): ?>
+{if count($students)}
 	<table>
 		<thead>
 			<tr>
@@ -32,17 +32,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($students as $student): ?>
+			{foreach $students as $student}
 				<tr>
-					<td><?php echo $student->nr_dziennika;?></td>
-					<td><?php echo $student->imie;?></td>
-					<td><?php echo $student->nazwisko;?></td>
-					<td><?php echo $student->pesel;?></td>
-					<td><?php echo $student->photo;?></td>
+					<td>{$student->nr_dziennika}</td>
+					<td>{$student->imie}</td>
+					<td>{$student->nazwisko}</td>
+					<td>{$student->pesel}</td>
+					<td>{$student->photo}</td>
 				</tr>
-			<?php endforeach;?>
+			{/foreach}
 		</tbody>
 	</table>
-<?php else: ?>
+{else}
 	nie dodano jeszcze uczniów
-<?php endif; ?>
+{/if}

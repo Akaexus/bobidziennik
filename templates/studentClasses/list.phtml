@@ -1,35 +1,37 @@
 <h2>Lista klas</h2>
 <a href="?s=studentClasses&do=add">Dodaj klase</a>
-<table>
-	<thead>
-		<tr>
-			<th>Nazwa</th>
-			<th>Rok</th>
-			<th>Symbol</th>
-			<th>Wychowawca</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php foreach ($classes as $class): ?>
+{if $classes}
+	<table>
+		<thead>
 			<tr>
-				<td><?php echo $class->nazwa; ?></td>
-				<td><?php echo $class->rok; ?></td>
-				<td><?php echo $class->symbol; ?></td>
-				<td><?php echo $class->leadingTeacher(); ?></td>
-				<td>
-					<a href="?s=studentClasses&do=manage&id=<?php echo $class->id; ?>">
-						Zarządzaj klasą
-					</a>
-				</td>
-				<td>
-					<a href="?s=studentClasses&do=overview&id=<?php echo $class->id; ?>">
-						Wyświetl uczniów
-					</a>
-				</td>
-
+				<th>Nazwa</th>
+				<th>Rok</th>
+				<th>Symbol</th>
+				<th>Wychowawca</th>
+				<th></th>
+				<th></th>
 			</tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{foreach $classes as $class}
+				<tr>
+					<td>{$class->nazwa}</td>
+					<td>{$class->rok}</td>
+					<td>{$class->symbol}</td>
+					<td>{$class->leadingTeacher()}</td>
+					<td>
+						<a href="?s=studentClasses&do=manage&id={$class->id}">
+							Zarządzaj klasą
+						</a>
+					</td>
+					<td>
+						<a href="?s=studentClasses&do=overview&id={$class->id}">
+							Wyświetl uczniów
+						</a>
+					</td>
+
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+{/if}

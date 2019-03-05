@@ -26,14 +26,14 @@ class StudentStats extends Controller
 		]));
 
 
-		$template = Output::i()->getTemplate('StudentStats', 'stats');
-		Output::i()->add($template->render([
+		$template = Output::i()->renderTemplate('studentStats', 'stats', [
 			'student'=> $student,
 			'studentClass'=> $studentClass,
 			'studentLeader'=> $studentLeader,
 			'subjects'=> $subjects,
 			'marks'=> $marks
-		]));
+		]);
+		Output::i()->add($template);
 	}
 
 

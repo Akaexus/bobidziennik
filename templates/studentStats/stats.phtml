@@ -1,44 +1,44 @@
 <h2>Dane ucznia</h2>
-	<table border="collapse">
+	<table>
 		<thead>
 			<tr>
-				<th colspan="2"><?php echo $student->imie . " " . $student->nazwisko; ?></th>
+				<th colspan="2">{$student->imie} {$student->nazwisko}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Pesel</td>
-				<td><?php echo $student->pesel ?></td>
+				<td>{$student->pesel}</td>
 			</tr>
 			<tr>
 				<td>Klasa</td>
-				<td><?php echo $studentClass->symbol; ?> <?php echo $studentClass->nazwa; ?></td>
+				<td>{$studentClass->symbol} {$studentClass->nazwa}</td>
 			</tr>
 			<tr>
 				<td>Wychowawca</td>
-				<td><?php echo $studentLeader->imie . " " . $studentLeader->nazwisko; ?></td>
+				<td>{$studentLeader->imie} {$studentLeader->nazwisko}</td>
 			</tr>
 		</tbody>
 	</table>
 
 <h2>Oceny</h2>
 
-	<table border="collapse">
+	<table>
 		<thead>
 		</thead>
 		<tbody>
-			<?php foreach ($subjects as $subject): ?>
+			{foreach $subjects as $subject}
 				<tr>
-					<td><?php echo $subject->nazwa; ?></td>
+					<td>{$subject->nazwa}</td>
 					<td>
-						<?php foreach ($marks as $mark): ?>
-							<?php if ($mark->id_przedmiotu == $subject->id): ?>
-									<div><?php echo $mark->ocena ?></div>
-							<?php endif; ?>
-						<?php endforeach; ?>
+						{foreach $marks as $mark}
+							{if $mark->id_przedmiotu === $subject->id}
+									<div>{$mark->ocena}</div>
+							{/if}
+						{/foreach}
 					</td>
 				</tr>
-			<?php endforeach; ?>
+			{/foreach}
 		</tbody>
 
 	</table>

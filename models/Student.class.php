@@ -21,7 +21,7 @@ class Student extends ActiveRecord {
 
 	public function getClass()
 	{
-		$studentClass = studentClass::load($this->id_klasy);
+		$studentClass = StudentClass::load($this->id_klasy);
 		return $studentClass;
 	}
 

@@ -5,6 +5,15 @@ class Output {
 	public $title;
 	protected $cssFiles = [];
 	protected $jsFiles = [];
+	protected $templatingEngine;
+
+	public function __construct() {
+		$this->templatingEngine = new Latte\Engine();
+		if (defined('DEV_MODE') && DEV_MODE) {
+			$this->templatingEngine->setAutoRefresh(false);
+		}
+	}
+
 	public function redirect($url, $internal = true) {
 		$baseUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		if ($internal) {
@@ -35,8 +44,9 @@ class Output {
 		echo $output;
 	}
 
-	public function getTemplate($controller, $templateName) {
-		return new Template($controller, $templateName);
+	public function renderTemplate($controller, $template, $params) {
+		$output = $this->templatingEngine->render(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
+		return $output;
 	}
 
 	public static $instance;
