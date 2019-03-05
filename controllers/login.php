@@ -1,22 +1,25 @@
 <?php
 
-class Login extends Controller{
+class Login extends Controller {
+
 	public function manage() {
 		if (User::loggedIn()) {
 			Output::i()->add('zalogowany');
 		} else {
-			$loginForm = Output::i()->getTemplate('login', 'form');
-			if (!isset($_POST['login']) && !isset($_POST['pass'])) {
-				Output::i()->add($loginForm->render());
-			} else {
-				$login = $_POST['login'];
-				$pass = $_POST['pass'];
-				$logged = User::login($login, $pass);
+			$form = new \Nette\Forms\Form();
+			$form->addText('login', 'Login')->setRequired('Wypełnij pole login.');
+			$form->addPassword('pass', 'Hasło')->setRequired('Wypełnij pole login.');
+			$form->addSubmit('send', 'Zaloguj');
+			if ($form->isSuccess()) {
+				$formValues = $form->getValues();
+				$logged = User::login($formValues['login'], $formValues['pass']);
 				if ($logged) {
 					Output::i()->redirect('/');
 				} else {
-					Output::i()->add($loginForm->render());
+					Output::i()->add($form);
 				}
+			} else {
+				Output::i()->add($form);
 			}
 		}
 	}

@@ -1,27 +1,2 @@
 <h1>Dodaj klase</h1>
-<form mathod="post">
-    <label>
-      Nazwa
-      <input type="text" name="nazwa">
-    </label>
-    <label>
-      Rok
-      <input type="number" name="nazwa">
-    </label>
-    <label>
-      Symbol:
-      <input type="text" name="symbol">
-    </label>
-    <label>
-      Wychowawca:
-      <?php echo print_r($teacher, 1); ?>
-      <select name="wychowawca">
-        <?php foreach($teachers as $teacher): ?>
-          <option value="<?php echo $teacher->id ?>">
-            <?php echo "{$teacher->imie} {$teacher->nazwisko}"; ?>
-          </option>
-        <?php endforeach;?>
-      </select>
-    </label>
-    <button type="button" name="action" value="addClass">Dodaj</button>
-</form>
+<?php echo $form ?>

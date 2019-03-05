@@ -106,16 +106,17 @@
 		}
 
 		public function insert($table, $values) {
-			$query = "INSERT INTO {$table} ("
+			$query = 'INSERT INTO '.$table.' ('
 			.implode(',', array_keys($values))
 			.') VALUES('
-			.implode(',', array_map(function() {
+			.implode(', ', array_map(function() {
 				return '?';
 			}, array_keys($values)))
 			.')';
 			$stmt = $this->c->prepare($query);
-			$stmt->execute(...array_values($values));
+			$stmt->execute(array_values($values));
 			$stmt = null;
+			return $this->c->lastInsertId();
 		}
 
 		// SINGLETON

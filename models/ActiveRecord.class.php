@@ -23,6 +23,7 @@ abstract class ActiveRecord {
 			foreach (static::$columnNames as $column) {
 				$values[] = $this->$column;
 			}
+
 			$query = 'update '.static::$databaseTable.' set ';
 			$params = [];
 			foreach (static::$columnNames as $column) {
@@ -30,13 +31,16 @@ abstract class ActiveRecord {
 			}
 			$query .= implode(',', $params);
 			$query .= ' where '.static::$idColumn.'='.$this->$idColumn;
-			DB::i()->query($query);
+			return DB::i()->query($query);
 		} else {
+			$columnNames = static::$columnNames;
+			unset($columnNames[array_search(static::$idColumn, $columnNames)]);
+
 			$values = [];
-			foreach (static::$columnNames as $column) {
+			foreach ($columnNames as $column) {
 				$values[$column] = $this->$column;
 			}
-			DB::i()->insert(static::$databaseTable, $values);
+			return DB::i()->insert(static::$databaseTable, $values);
 		}
 	}
 

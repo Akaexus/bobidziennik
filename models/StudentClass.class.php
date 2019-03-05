@@ -29,7 +29,7 @@ class StudentClass extends ActiveRecord {
 
 
 	public function leadingTeacher() {
-		return Teacher::load();
+		return Teacher::load($this->wychowawca);
 	}
 
 	public function getSubjects() {
@@ -52,7 +52,38 @@ class StudentClass extends ActiveRecord {
 				['id in ('.implode(',', array_map(function(){return '?';}, $subjectsIDs)), $subjectsIDs]
 			]
 		]);
-		
+
 		return $subjects;
+	}
+	public static function form() {
+		$teachersModels = array_map(function($teacher) {
+			return Teacher::load($teacher['id']);
+		}, DB::i()->select([
+			'select'=> 'id',
+			'from'=> Teacher::$databaseTable
+		]));
+		$teachers = [];
+		foreach ($teachersModels as $teacher) {
+			$teachers[$teacher->id] = "{$teacher->imie} {$teacher->nazwisko}";
+		}
+		$form = new \Nette\Forms\Form();
+		$form->addText('nazwa', 'Nazwa')
+			->setRequired('Wypełnij pole nazwa.')
+			->setHtmlAttribute('placeholder', 'np. Matematyczno-fizyczna');
+		$form->addText('symbol', 'Symbol')
+			->setRequired('Wypełnij pole Symbol.')
+			->addRule(\Nette\Forms\Form::MAX_LENGTH, 'Symbol klasy może mieć maksymalnie 4 litery!', 4)
+			->setHtmlAttribute('placeholder', 'np. B2T');
+		$form->addText('rok', 'Rok')
+			->setHtmlType('number')
+			->addRule(\Nette\Forms\Form::INTEGER, 'Rok musi być liczbą.')
+			->addRule(\Nette\Forms\Form::RANGE, 'Rok musi być %d-%d.', [1, 4])
+			->setRequired('Wypełnij pole rok.');
+		$form->addSelect('wychowawca', 'Wychowawca', $teachers);
+		$form->addSubmit('send', 'Dodaj');
+		$form->setDefaults([
+			'rok'=> 1
+		]);
+		return $form;
 	}
 }

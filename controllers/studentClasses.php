@@ -13,21 +13,33 @@ class StudentClasses extends Controller {
 		]));
 	}
 
+	public function _getForm($defaultValues = null) {
+
+	}
+
 	public function execute() {
 
 	}
 
-	public function addClass() {
-		$teachers = array_map(function($teacher) {
-			return Teacher::load($teacher['id']);
-		}, DB::i()->select([
-			'select'=> 'id',
-			'from'=> Teacher::$databaseTable
-		]));
-		$template = Output::i()->getTemplate('studentClasses', 'add');
-		Output::i()->add($template->render([
-			'teachers'=> $teachers
-		]));
+	public function add() {
+		$form = StudentClass::form();
+		if ($form->isSuccess()) {
+			$fv = $form->getValues();
+			$studentClass = new StudentClass([
+				'nazwa'=> $fv->nazwa,
+				'symbol'=> $fv->symbol,
+				'rok'=> $fv->rok,
+				'wychowawca'=> $fv->wychowawca
+			]);
+			$studentClass->_new = true;
+			$id = $studentClass->save();
+			Output::i()->redirect('?s=studentClasses&id='.$id);
+		} else {
+			$template = Output::i()->getTemplate('studentClasses', 'add');
+			Output::i()->add($template->render([
+				'form'=> $form
+			]));
+		}
 	}
 
 	public function manage()
