@@ -1,4 +1,5 @@
 <?php
+use Nette\Forms\Rule;
 
 	define('BD_ROOT_PATH', __DIR__.'/');
 	define('DEV_MODE', true);
