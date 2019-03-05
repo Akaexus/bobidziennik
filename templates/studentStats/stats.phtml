@@ -23,18 +23,20 @@
 
 <h2>Oceny</h2>
 
-	<table>
+	<table border="collapse">
 		<thead>
 		</thead>
 		<tbody>
 			<?php foreach ($subjects as $subject): ?>
 				<tr>
 					<td><?php echo $subject->nazwa; ?></td>
-					<?php foreach ($marks as $mark): ?>
-						<?php if ($mark->id_przedmiotu == $subject->id): ?>
-							<td><?php echo $mark->ocena ?></td>
-						<?php endif; ?>
-					<?php endforeach; ?>
+					<td>
+						<?php foreach ($marks as $mark): ?>
+							<?php if ($mark->id_przedmiotu == $subject->id): ?>
+									<div><?php echo $mark->ocena ?></div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
