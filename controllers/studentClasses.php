@@ -3,7 +3,8 @@
 
 class StudentClasses extends Controller {
 
-	public function overview() {
+	public function overview()
+    {
 		$classID = $_GET['id'];
 		$class = StudentClass::load($classID);
 		$template = Output::i()->renderTemplate('studentClasses', 'overview', [
@@ -13,15 +14,12 @@ class StudentClasses extends Controller {
 		Output::i()->add($template);
 	}
 
-	public function _getForm($defaultValues = null) {
-
-	}
-
 	public function execute() {
 
 	}
 
-	public function add() {
+	public function add()
+    {
 		$form = StudentClass::form();
 		if ($form->isSuccess()) {
 			$fv = $form->getValues();
