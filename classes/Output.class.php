@@ -17,7 +17,7 @@ class Output {
 	public function redirect($url, $internal = true) {
 		$baseUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		if ($internal) {
-			$url = $baseUrl;
+			$url = $baseUrl.$url;
 		}
 		header('Location: '.$url, 302);
 	}
