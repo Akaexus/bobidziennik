@@ -18,6 +18,32 @@ class StudentClasses extends Controller {
 
 	}
 
+    public function edit()
+    {
+        $id = Request::i()->id;
+        if (ctype_digit($id)) {
+            $class = StudentClass::load($id);
+            $columns = StudentClass::getColumns();
+            $defaultValues = [];
+            foreach ($columns as $column) {
+                $defaultValues[$column] = $class->$column;
+            }
+            $form = StudentClass::form($defaultValues);
+            if ($form->isSuccess()) {
+                $values = $form->getValues();
+                foreach ($columns as $column) {
+                    $class->$column = $values->$column;
+                }
+                $class->save();
+                Output::i()->redirect('?s=studentClasses&do=overview&id='.$id);
+            } else {
+                Output::i()->add($form);
+            }
+        } else {
+            Output::i()->redirect('?s=studentClasses&do=overview&id='.$id);
+        }
+    }
+
 	public function add()
     {
 		$form = StudentClass::form();
@@ -31,7 +57,7 @@ class StudentClasses extends Controller {
 			]);
 			$studentClass->_new = true;
 			$id = $studentClass->save();
-			Output::i()->redirect('?s=studentClasses&id='.$id);
+			Output::i()->redirect('?s=studentClasses&do=overview&id='.$id);
 		} else {
 			$template = Output::i()->renderTemplate('studentClasses', 'add', [
 				'form'=> $form

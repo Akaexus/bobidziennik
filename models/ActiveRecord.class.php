@@ -11,6 +11,12 @@ abstract class ActiveRecord {
 		}
 	}
 
+    public static function getColumns() {
+        $columns = static::$columnNames;
+        unset($columns[array_search(static::$idColumn, $columns)]);
+        return $columns;
+    }
+
 	public function getId() {
 		$idColumn = static::$idColumn;
 		return $this->$idColumn;

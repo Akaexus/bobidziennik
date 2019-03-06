@@ -55,7 +55,7 @@ class StudentClass extends ActiveRecord {
 
 		return $subjects;
 	}
-	public static function form() {
+	public static function form($defaultValues = null) {
 		$teachersModels = array_map(function($teacher) {
 			return Teacher::load($teacher['id']);
 		}, DB::i()->select([
@@ -80,8 +80,8 @@ class StudentClass extends ActiveRecord {
 			->addRule(\Nette\Forms\Form::RANGE, 'Rok musi być %d-%d.', [1, 4])
 			->setRequired('Wypełnij pole rok.');
 		$form->addSelect('wychowawca', 'Wychowawca', $teachers);
-		$form->addSubmit('send', 'Dodaj');
-		$form->setDefaults([
+		$form->addSubmit('send', $defaultValues ? 'Edytuj' : 'Dodaj');
+		$form->setDefaults($defaultValues ? $defaultValues : [
 			'rok'=> 1
 		]);
 		return $form;
