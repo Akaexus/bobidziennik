@@ -9,7 +9,7 @@ class Logout extends Controller {
 	public function manage() {
 		if (User::loggedIn()) {
 			$this->_logout();
-			Output::i()->add('wylogowano');
+			Output::i()->redirect('');
 		}
 	}
 	public function execute()
