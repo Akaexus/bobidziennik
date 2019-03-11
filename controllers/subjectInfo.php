@@ -1,6 +1,6 @@
 <?php
 
-class Subject extends Controller
+class SubjectInfo extends Controller
 {
 	public function manage()
 	{

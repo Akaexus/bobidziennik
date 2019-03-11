@@ -22,7 +22,7 @@ abstract class Controller {
 		'studentStats' => [
 			'permissions'=> ['u']
 		],
-		'subject' => [
+		'subjectInfo' => [
 			'permissions'=> ['u']
 		]
 	];

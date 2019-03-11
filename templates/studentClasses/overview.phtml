@@ -28,7 +28,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Numer</th>
+				<th>#</th>
 				<th>Imie</th>
 				<th>Nazwisko</th>
 				<th>PESEL</th>
@@ -39,8 +39,12 @@
 			{foreach $students as $student}
 				<tr>
 					<td>{$student->nr_dziennika}</td>
-					<td>{$student->imie}</td>
-					<td>{$student->nazwisko}</td>
+					<td>
+						<a href="?s=studentStats&id=1">{$student->imie}</a>
+					</td>
+					<td>
+						<a href="?s=studentStats&id=1">{$student->nazwisko}</a>
+					</td>
 					<td>{$student->pesel}</td>
 					<td>{$student->photo}</td>
 				</tr>
