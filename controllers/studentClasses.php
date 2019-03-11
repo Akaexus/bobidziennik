@@ -79,4 +79,48 @@ class StudentClasses extends Controller {
 		]);
 		Output::i()->add($template);
 	}
+    public function addStudent() {
+        try {
+            $classID = Request::i()->id;
+            if (ctype_digit($classID)) {
+                $class = StudentClass::load($classID);
+                $form = Student::form();
+                if ($form->isSuccess()) {
+                    $values = $form->getValues();
+                    $user = new User([
+                        'email' => $values['email'],
+                        'login' => $values['login'],
+                        'pass' => $values['pass'],
+                    ]);
+                    $user->_new = true;
+                    $userID = $user->save();
+
+                    $student = new Student([
+                        'id_konta'=> $userID,
+                        'id_klasy'=> $classID,
+                        'imie'=> $values['imie'],
+                        'nazwisko'=> $values['nazwisko'],
+                        'photo'=> '',
+                        'pesel'=> $values['pesel'],
+                        'nr_dziennika'=> DB::i()->select([
+                            'select'=> 'nr_dziennika',
+                            'from'=> Student::$databaseTable,
+                            'where'=> [['id_klasy=?', $classID]],
+                            'order'=> 'nr_dziennika DESC',
+                            'limit'=> 1
+                        ])[0]['nr_dziennika']+1
+                    ]);
+                    $student->_new = true;
+                    $student->save();
+                    Output::i()->redirect('?s=studentClasses&do=overview&id='.$classID);
+                } else {
+                    Output::i()->add($form);
+                }
+            }
+        } catch (\Exception $e) {
+
+        }
+
+
+    }
 }

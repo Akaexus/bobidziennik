@@ -6,6 +6,7 @@ class StudentStats extends Controller
 
 	public function manage()
 	{
+        $this->studentId = $_GET['id'];
         $student = Student::load($this->studentId);					// pobranie danych ucznia
         $studentClass = $student->getClass();						// pobranie informacji o klasie
         $studentLeader = Teacher::load($studentClass->wychowawca);	// pobranie informacji o wychowawcy
@@ -39,9 +40,8 @@ class StudentStats extends Controller
 
 	public function execute()
 	{
-		$this->studentId = $_GET['id'];
-	}
 
+	}
 }
 
 
