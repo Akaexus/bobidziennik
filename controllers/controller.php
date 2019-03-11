@@ -5,7 +5,7 @@
 abstract class Controller {
 	public static $controllers = [
         'studentClasses' => [
-            'permissions'=> ['n']
+            'permissions'=> ['t']
         ],
 		// 'dashboard'=> [
 		// 	'permissions'=> ['u']
@@ -14,13 +14,13 @@ abstract class Controller {
 	        'permissions'=> ['g']
 	    ],
 	    'marks' => [
-	    	'permissions'=> ['n']
+	    	'permissions'=> ['t']
 	    ],
 		'studentStats' => [
 			'permissions'=> ['u']
 		],
 		'subjectInfo' => [
-			'permissions'=> ['n']
+			'permissions'=> ['t']
 		],
         'logout' => [
             'permissions'=> ['u']
