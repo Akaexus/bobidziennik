@@ -14,7 +14,7 @@ class Login extends Controller {
 				$formValues = $form->getValues();
 				$logged = User::login($formValues['login'], $formValues['pass']);
 				if ($logged) {
-					Output::i()->redirect('/');
+					Output::i()->redirect('');
 				} else {
 					Output::i()->add($form);
 				}
