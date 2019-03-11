@@ -44,7 +44,7 @@ class Output {
 		echo $output;
 	}
 
-	public function renderTemplate($controller, $template, $params) {
+	public function renderTemplate($controller, $template, $params = []) {
 		$output = $this->templatingEngine->render(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
 		return $output;
 	}

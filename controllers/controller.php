@@ -4,9 +4,12 @@
 
 abstract class Controller {
 	public static $controllers = [
-		'devboard'=> [
-			'permissions'=> ['u']
-		],
+        'studentClasses' => [
+            'permissions'=> ['u']
+        ],
+		// 'dashboard'=> [
+		// 	'permissions'=> ['u']
+		// ],
 	    'login'=> [
 	        'permissions'=> ['g']
 	    ],
@@ -16,12 +19,12 @@ abstract class Controller {
 	    'marks' => [
 	    	'permissions'=> ['u']
 	    ],
-	    'studentClasses' => [
-	    	'permissions'=> ['u']
-	    ],
-			'studentStats' => [
-				'permissions'=> ['u']
-			]
+		'studentStats' => [
+			'permissions'=> ['u']
+		],
+		'subject' => [
+			'permissions'=> ['u']
+		]
 	];
 	abstract public function execute();
 	public function __construct() {
