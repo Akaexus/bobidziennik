@@ -11,20 +11,17 @@ class Request {
 		$data = array_merge($_POST, $_GET);
 		foreach ($data as $key => $value) {
 			if (!in_array($key, $this->__protectedProperties) && preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/', $key)) {
-				$this->$key = trim(htmlspecialchars($value));		
+				$this->$key = trim(htmlspecialchars($value));
 			} else {
 				unset($data[$key]);
 			}
 		}
 
-		if(User::loggedIn()) {
-			if (array_key_exists('s', $data) && array_key_exists($data['s'], Controller::$controllers)) {
-				$this->controller = $data['s'];
-			} else {
-				$this->controller = array_keys(Controller::$controllers)[0];
-			}
+        $controllers = Controller::getAvailableControllers();
+		if (array_key_exists('s', $data) && array_key_exists($data['s'], $controllers)) {
+			$this->controller = $data['s'];
 		} else {
-			$this->controller = 'login';
+			$this->controller = array_keys($controllers)[0];
 		}
 	}
 

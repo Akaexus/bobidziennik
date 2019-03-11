@@ -6,8 +6,7 @@ class StudentStats extends Controller
 
 	public function manage()
 	{
-        $this->studentId = $_GET['id'];
-        $student = Student::load($this->studentId);					// pobranie danych ucznia
+        $student = $this->student;					// pobranie danych ucznia
         $studentClass = $student->getClass();						// pobranie informacji o klasie
         $studentLeader = Teacher::load($studentClass->wychowawca);	// pobranie informacji o wychowawcy
 
@@ -24,7 +23,9 @@ class StudentStats extends Controller
         }, DB::i()->select([
             'select'=> '*',
             'from'=> Mark::$databaseTable,
-            'where'=> "id_ucznia=".$this->studentId
+            'where'=> [
+                ["id_ucznia = ?", $student->id]
+            ]
         ]));
 
 
@@ -40,6 +41,11 @@ class StudentStats extends Controller
 
 	public function execute()
 	{
+        if (User::loggedIn()->isUczen()) {
+            $this->student = Student::getByUserId(User::loggedIn()->id);
+        } else {
+            $this->student = Student::load(Request::i()->id);
+        }
 
 	}
 }

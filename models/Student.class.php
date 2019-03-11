@@ -46,6 +46,20 @@ class Student extends ActiveRecord {
 		return $studentClass;
 	}
 
+    public static function getByUserId($userID) {
+        $studentData = DB::i()->select([
+            'select'=> '*',
+            'from'=> static::$databaseTable,
+            'where'=> [
+                ['id_konta=?', $userID]
+            ]
+        ]);
+        if ($studentData) {
+            return new Student($studentData[0]);
+        } else {
+            return null;
+        }
+    }
 
 	public function getMarks($subject = NULL) {
 		$whereClause = ['id_ucznia = '.$this->getId()];

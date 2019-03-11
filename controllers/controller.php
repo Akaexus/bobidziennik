@@ -5,7 +5,7 @@
 abstract class Controller {
 	public static $controllers = [
         'studentClasses' => [
-            'permissions'=> ['u']
+            'permissions'=> ['n']
         ],
 		// 'dashboard'=> [
 		// 	'permissions'=> ['u']
@@ -13,19 +13,39 @@ abstract class Controller {
 	    'login'=> [
 	        'permissions'=> ['g']
 	    ],
-	    'logout' => [
-	    	'permissions'=> ['u']
-	    ],
 	    'marks' => [
-	    	'permissions'=> ['u']
+	    	'permissions'=> ['n']
 	    ],
 		'studentStats' => [
 			'permissions'=> ['u']
 		],
 		'subjectInfo' => [
-			'permissions'=> ['u']
-		]
+			'permissions'=> ['n']
+		],
+        'logout' => [
+            'permissions'=> ['u']
+        ],
 	];
+
+    public static function getAvailableControllers($user = null) {
+        if (!$user) {
+            if (User::loggedIn()) {
+                $user = User::loggedIn();
+            }
+        }
+        $permissionMap = $user ? User::getPermissionMap($user) : ['g'];
+        $controllers = [];
+        foreach (static::$controllers as $controllerName => $controller) {
+            foreach ($controller['permissions'] as $perm) {
+                if (in_array($perm, $permissionMap)) {
+                    $controllers[$controllerName] = $controller;
+                    break;
+                }
+            }
+        }
+        return $controllers;
+    }
+
 	abstract public function execute();
 	public function __construct() {
 		$this->execute();
