@@ -1,0 +1,16 @@
+<table>
+	<thead>
+	</thead>
+	<tbody>
+		{foreach $students as $student}
+				<tr>
+					<td>{$student->imie} {$student->nazwisko}</td>
+					<td>
+						{foreach $student->marks as $mark}
+							<div>{$mark->ocena}</div>
+						{/foreach}
+					</td>
+				</tr>
+			{/foreach}
+	</tbody>
+</table>

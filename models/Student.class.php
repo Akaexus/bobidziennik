@@ -71,13 +71,15 @@ class Student extends ActiveRecord {
 			}
 		}
 		$whereClause = implode(' AND ', $whereClause);
-		$marks = DB::i()->select([
+		$marks = array_map(function($e) {
+            return new Mark($e);
+        }, DB::i()->select([
 			'select'=> '*',
 			'from'=> Mark::$databaseTable,
 			'where'=> [
 				['id_przedmiotu=?', ($subject instanceof Subject ? $subject->getId() : $subject)]
 			]
-		]);
+		]));
 		return $marks;
 	}
 }
