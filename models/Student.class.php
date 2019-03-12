@@ -26,16 +26,21 @@ class Student extends ActiveRecord {
         ->setRequired('Podaj e-mail.');
 		$form->addText('login', 'Login')
 			->setRequired('Wypełnij login.');
-		$form->addPassword('pass', 'Hasło')
-			->setRequired('Wypełnij login.');
+        if (!$defaultValues) {
+            $form->addPassword('pass', 'Hasło')
+            ->setRequired('Wypełnij hasło.');
+        }
 		$form->addText('imie', 'Imie')
 			->setRequired('Wypełnij pole imie.');
 		$form->addText('nazwisko', 'Nazwisko')
-			->setRequired('Wypełnij pole imie.');
+			->setRequired('Wypełnij pole nazwisko.');
         $form->addText('pesel', 'PESEL')
             ->setRequired('Wypełnij pole PESEL.')
             ->addRule(\Nette\Forms\Form::MAX_LENGTH, 'Pesel musi zawierać 11 cyfr!', 11)
             ->addRule(\Nette\Forms\Form::MIN_LENGTH, 'Pesel musi zawierać 11 cyfr!!', 11);
+        if ($defaultValues) {
+            $form->setDefaults($defaultValues);
+        }
 		$form->addSubmit('send', $defaultValues ? 'Edytuj' : 'Dodaj');
 		return $form;
 	}
