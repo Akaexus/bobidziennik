@@ -79,6 +79,7 @@ class StudentClasses extends Controller {
 		]);
 		Output::i()->add($template);
 	}
+
     public function addStudent() {
         try {
             $classID = Request::i()->id;
