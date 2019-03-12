@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {if $title}
+      <title>{$title}</title>
+    {/if}
+  </head>
+  <body>
+    {$output|noescape}
+    {foreach $jsFiles as $jsFile}
+    <script src="{$jsFile}" charset="utf-8"></script>
+    {/foreach}
+  </body>
+</html>

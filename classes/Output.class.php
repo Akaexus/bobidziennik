@@ -3,8 +3,8 @@
 class Output {
 	private $output;
 	public $title;
-	protected $cssFiles = [];
-	protected $jsFiles = [];
+	public $cssFiles = [];
+	public $jsFiles = [];
 	protected $templatingEngine;
 
 	public function __construct() {
@@ -27,21 +27,11 @@ class Output {
 	}
 
 	public function render() {
-		$output = '
-		<!DOCTYPE html>
-		<html lang="en">
-			<head>
-				<meta charset="UTF-8">';
-				if ($this->title) {
-					$output .= "<title>{$this->title}</title>";
-				}
-				$output .='
-			<//head>
-			<body>'
-			.$this->output.
-			'</body>
-		</html>';
-		echo $output;
+        echo $this->renderTemplate('core', 'core', [
+            'title'=> $this->title,
+            'output'=> $this->output,
+            'jsFiles'=> $this->jsFiles
+        ]);
 	}
 
 	public function renderTemplate($controller, $template, $params = []) {
