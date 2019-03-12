@@ -1,1 +1,1 @@
-console.log('xd');
+import './styles/main.scss';
