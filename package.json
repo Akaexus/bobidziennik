@@ -1,0 +1,33 @@
+{
+  "name": "bobidziennik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.dev.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dzban/bobidziennik.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzban/bobidziennik/issues"
+  },
+  "homepage": "https://github.com/dzban/bobidziennik#readme",
+  "dependencies": {
+    "@webpack-cli/init": "^0.1.3"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^2.1.1",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
