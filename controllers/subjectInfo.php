@@ -21,7 +21,7 @@ class SubjectInfo extends Controller
 	}
 	public function execute()
 	{
-        $this->classId = $_GET['id'];
+        $this->classId = $_GET['class'];
         $this->subjectId = $_GET['subject'];
 	}
 }
