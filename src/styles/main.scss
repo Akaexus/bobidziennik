@@ -1,1 +1,7 @@
 @import 'colors.scss';
+@import 'reset.scss';
+@import 'components/login.scss';
+
+body {
+  background: $lighterColor;
+}

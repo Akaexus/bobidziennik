@@ -7,6 +7,7 @@ use Nette\Forms\Rule;
 	require_once('vendor/autoload.php');
 
 	session_start();
+    Output::i()->jsFiles[] = 'js/index.js';
     require "controllers/".Request::i()->controller.".php";
     $controller = ucfirst(Request::i()->controller);
     $page = new $controller();
