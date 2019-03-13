@@ -1,4 +1,4 @@
-<table>
+<table class="table">
 	<thead>
 	</thead>
 	<tbody>
@@ -7,7 +7,9 @@
 					<td>{$student->imie} {$student->nazwisko}</td>
 					<td>
 						{foreach $student->marks as $mark}
+							{if $student->id === $mark->id_ucznia}
 							<div>{$mark->ocena}</div>
+							{/if}
 						{/foreach}
 					</td>
 				</tr>
