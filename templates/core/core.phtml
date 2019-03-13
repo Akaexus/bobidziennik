@@ -7,7 +7,9 @@
     {/if}
   </head>
   <body>
-    {$output|noescape}
+    <div id="wrapper">
+      {$output|noescape}
+    </div>
     {foreach $jsFiles as $jsFile}
     <script src="{$jsFile}" charset="utf-8"></script>
     {/foreach}

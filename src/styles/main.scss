@@ -1,7 +1,24 @@
 @import 'colors.scss';
+@import 'fonts.scss';
 @import 'reset.scss';
 @import 'components/login.scss';
+@import 'components/form.scss';
 
 body {
-  background: $lighterColor;
+  background: $lightColor1;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  color: $darkColor1;
+}
+#wrapper {
+	min-height: 100vh;
+	position: relative;
+}
+
+input {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: $mainColor;
 }

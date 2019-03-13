@@ -35,7 +35,7 @@ class Output {
 	}
 
 	public function renderTemplate($controller, $template, $params = []) {
-		$output = $this->templatingEngine->render(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
+		$output = $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
 		return $output;
 	}
 

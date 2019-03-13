@@ -1,0 +1,51 @@
+#loginWrapper {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	>#login {
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+		border-radius: .2rem;
+		text-align: center;
+		border-top: 4px solid $mainColor;
+		background: #fff;
+		.inside {
+			padding: 0.5rem 1rem;
+			h1 {
+				font-size: 1.3rem;
+				font-weight: 500;
+			}
+			form {
+				display: inline-block;
+			}
+
+			input {
+				&[type=text], &[type=password] {
+					padding: .3rem .5rem;
+					box-sizing: border-box;
+					bor
+					&:focus {
+						border: 1px solid $mainColor;
+					}
+				}
+			}
+
+			input[type=submit] {
+				margin-top: 1rem;
+				font-size: .9rem;
+				background: $mainColor;
+				color: $lightColor1;
+				width: 100%;
+				border: none;
+				padding: .3rem 0;
+			}
+		}
+
+		.passwordRecovery {
+			background: $lightColor2;
+			padding: .8rem;
+			font-size: .85em;
+			color: $mediumColor1;
+		}
+	}
+}
