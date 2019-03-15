@@ -2,14 +2,19 @@ header {
 	background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
 	padding: 1.5rem 0 0 0;
 	color: #fff;
+
 	.inner {
 		@include main_width;
 		margin: 0 auto;
-		h1 {
-			margin: 0;
-			font-weight: 300;
-			font-size: 2rem;
+		a {
+			color: #fff;
+			h1 {
+				margin: 0;
+				font-weight: 300;
+				font-size: 2rem;
+			}
 		}
+
 		ul {
 			list-style: none;
 			display: flex;
