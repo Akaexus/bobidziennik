@@ -1,10 +1,14 @@
 @import 'colors';
 @import 'fonts';
 @import 'reset';
+@import 'config';
 @import 'components/login';
 @import 'components/form';
 @import 'components/tables';
 @import 'components/header';
+
+
+
 
 body {
   background: #fff;
@@ -29,8 +33,7 @@ a {
 
 #wrapper {
 	background: #fff;
-	width: 80%;
-	min-width: 980px;
 	margin: 0 auto;
 	padding: 1.5rem;
+	@include main_width;
 }

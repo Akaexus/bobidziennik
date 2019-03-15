@@ -1,10 +1,36 @@
 header {
-	background: lighten($mainColor2, 10);
-	padding: 1.5rem;
+	background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
+	padding: 1.5rem 0 0 0;
 	color: #fff;
-	h1 {
-		margin: 0;
-		font-weight: 300;
-		font-size: 1.5rem;
+	.inner {
+		@include main_width;
+		margin: 0 auto;
+		h1 {
+			margin: 0;
+			font-weight: 300;
+			font-size: 2rem;
+		}
+		ul {
+			list-style: none;
+			display: flex;
+			> li {
+				 > a {
+					color: #fff;
+					display: block;
+					background: lighten($mainColor2, 10);
+					padding: 0.5rem 1rem;
+					transition: all .1s;
+					&:hover {
+						transition: all .1s;
+						background: #fff;
+						color: $darkColor1;
+					}
+				}
+				&:not(:last-of-type) {
+					margin-right: 0.2rem;
+				}
+			}
+		}
 	}
+
 }
