@@ -5,6 +5,7 @@ class Output {
 	public $title;
 	public $cssFiles = [];
 	public $jsFiles = [];
+    public $showHeader = true;
 	protected $templatingEngine;
 
 	public function __construct() {
@@ -26,15 +27,23 @@ class Output {
 		$this->output .= $string;
 	}
 
-	public function render() {
-        echo $this->renderTemplate('core', 'core', [
+	public function render($toString = false) {
+        $output = $this->renderTemplate('core', 'core', [
             'title'=> $this->title,
             'output'=> $this->output,
             'jsFiles'=> $this->jsFiles
         ]);
+        if ($toString) {
+            return $output;
+        } else {
+            echo $output;
+        }
 	}
 
 	public function renderTemplate($controller, $template, $params = []) {
+        $header = $this->showHeader ? $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/core/header.phtml", []) : null;
+        $params['controller'] = Request::i()->controller;
+        $params['header'] = $header;
 		$output = $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
 		return $output;
 	}

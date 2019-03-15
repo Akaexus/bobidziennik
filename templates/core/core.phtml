@@ -6,7 +6,10 @@
       <title>{$title}</title>
     {/if}
   </head>
-  <body>
+  <body class="controller-{$controller}">
+      {if $header}
+        {$header|noescape}
+      {/if}
     <div id="wrapper">
       {$output|noescape}
     </div>

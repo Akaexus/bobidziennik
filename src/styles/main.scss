@@ -1,14 +1,16 @@
-@import 'colors.scss';
-@import 'fonts.scss';
-@import 'reset.scss';
-@import 'components/login.scss';
-@import 'components/form.scss';
-@import 'components/tables.scss';
+@import 'colors';
+@import 'fonts';
+@import 'reset';
+@import 'components/login';
+@import 'components/form';
+@import 'components/tables';
+@import 'components/header';
 
 body {
-  background: $lightColor1;
+  background: #fff;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   color: $darkColor1;
+  font-size: 14px;
 }
 #wrapper {
 	min-height: 100vh;
@@ -22,4 +24,13 @@ input {
 a {
 	text-decoration: none;
 	color: $mainColor;
+}
+
+
+#wrapper {
+	background: #fff;
+	width: 80%;
+	min-width: 980px;
+	margin: 0 auto;
+	padding: 1.5rem;
 }

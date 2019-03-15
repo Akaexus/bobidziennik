@@ -4,12 +4,7 @@ $cellPadding: 0.8rem;
 
 
 table.table {
-  // background-color: $lighterColor;
   border-collapse: collapse;
-  div {
-    display: inline-block;
-  };
-
   border-top: 1px solid $borderColor;
   border-bottom: 1px solid $borderColor;
 
