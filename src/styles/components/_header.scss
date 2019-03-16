@@ -5,6 +5,7 @@ header {
 
 	.inner {
 		@include main_width;
+		position: relative;
 		margin: 0 auto;
 		a {
 			color: #fff;
@@ -15,27 +16,36 @@ header {
 			}
 		}
 
-		ul {
-			list-style: none;
-			display: flex;
-			> li {
-				 > a {
-					color: #fff;
-					display: block;
-					background: lighten($mainColor2, 10);
-					padding: 0.5rem 1rem;
-					transition: all .1s;
-					&:hover {
+		nav {
+			&#secondaryNav {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			ul {
+				list-style: none;
+				display: flex;
+				margin: 0;
+				> li {
+					 > a {
+						color: #fff;
+						display: block;
+						background: lighten($mainColor2, 10);
+						padding: 0.5rem 1rem;
 						transition: all .1s;
-						background: #fff;
-						color: $darkColor1;
+						&:hover {
+							transition: all .1s;
+							background: #fff;
+							color: $darkColor1;
+						}
 					}
-				}
-				&:not(:last-of-type) {
-					margin-right: 0.2rem;
+					&:not(:last-of-type) {
+						margin-right: 0.2rem;
+					}
 				}
 			}
 		}
+
 	}
 
 }
