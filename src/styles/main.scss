@@ -6,6 +6,7 @@
 @import 'components/form';
 @import 'components/tables';
 @import 'components/header';
+@import 'components/error';
 
 
 
@@ -17,7 +18,6 @@ body {
   font-size: 14px;
 }
 #wrapper {
-	min-height: 100vh;
 	position: relative;
 }
 

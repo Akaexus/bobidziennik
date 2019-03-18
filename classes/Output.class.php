@@ -27,6 +27,14 @@ class Output {
 		$this->output .= $string;
 	}
 
+    public function error($errorCode = null) {
+        $this->add($this->renderTemplate('core', 'error', [
+            'errorCode'=> $errorCode,
+        ]));
+        echo $this->render();
+        die();
+    }
+
 	public function render($toString = false) {
         $output = $this->renderTemplate('core', 'core', [
             'title'=> $this->title,
