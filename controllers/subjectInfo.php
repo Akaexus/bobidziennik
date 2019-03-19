@@ -15,7 +15,8 @@ class SubjectInfo extends Controller
 
         $template = Output::i()->renderTemplate('subjectInfo', 'subjectInfo', [
             'students'=> $students,
-            'subject'=> $subject
+            'subject'=> $subject,
+            'class'=> $class,
         ]);
         Output::i()->add($template);
 	}

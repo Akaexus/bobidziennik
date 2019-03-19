@@ -21,7 +21,10 @@ class User extends ActiveRecord
 				['id_konta=?', $this->id]
 			]
 		]);
-        return !!count($teachers);
+        if (count($teachers)) {
+            return $teachers[0]['id'];
+        }
+        return false;
 	}
 
 	public function isUczen()

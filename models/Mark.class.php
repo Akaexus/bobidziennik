@@ -12,4 +12,17 @@ class Mark extends ActiveRecord {
 		'id_przedmiotu',
 		'id_ucznia',
 	];
+    public static function form($defaultValues = []) {
+        $form = new \Nette\Forms\Form();
+        $form->addRadioList('ocena', 'Ocena', [
+            '1'=>'1',
+            '2'=>'2',
+            '3'=>'3',
+            '4'=>'4',
+            '5'=>'5',
+            '6'=>'6',
+        ])->setRequired();
+        $form->addSubmit('send', $defaultValues ? 'Edytuj' : 'Dodaj');
+        return $form;
+    }
 }

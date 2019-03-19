@@ -3,7 +3,7 @@
 class Marks extends Controller
 {
 
-	
+
 	public function subjectsNames()
 	{
 		$subjects = DB::i()->select([
@@ -21,7 +21,7 @@ class Marks extends Controller
 		]);
 		Output::i()->add(print_r($ids, 1));
 	}
-	
+
 	public function studentMarks()
 	{
 		$output = $this->subjectsNames();

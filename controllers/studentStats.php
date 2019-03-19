@@ -65,6 +65,37 @@ class StudentStats extends Controller
         }
     }
 
+    public function addMark() {
+        if (User::loggedIn()->isNauczyciel()) {
+            if (ctype_digit(Request::i()->subject)) {
+                $form = Mark::form();
+                $subject = Subject::load(Request::i()->subject);
+                $template = Output::i()->renderTemplate('studentStats', 'mark', [
+                    'student'=> $this->student,
+                    'subject'=> $subject,
+                    'markForm'=> $form,
+                ]);
+                if ($form->isSuccess()) {
+                    $values = $form->getValues();
+                    $mark = new Mark([
+                        'ocena'=> $values['ocena'],
+                        'id_przedmiotu'=> $subject->id,
+                        'id_ucznia'=> $this->student->id,
+                        'id_nauczyciela'=> User::loggedIn()->isNauczyciel()
+                    ]);
+                    $mark->_new = true;
+                    $mark->save();
+                    $class = $this->student->getClass();
+                    Output::i()->redirect("?s=subjectInfo&class={$class->id}&subject={$subject->id}");
+                } else {
+                    Output::i()->add($template);
+                }
+            } else {
+                // ERROR
+            }
+        }
+    }
+
 	public function execute()
 	{
         if (User::loggedIn()->isUczen()) {
