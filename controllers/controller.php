@@ -19,6 +19,9 @@ abstract class Controller {
 		'subjectInfo' => [
 			'permissions'=> ['t']
 		],
+        'timetable' => [
+            'permissions'=> ['u']
+        ],
         'logout' => [
             'permissions'=> ['u']
         ],
