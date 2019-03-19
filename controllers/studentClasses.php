@@ -9,7 +9,8 @@ class StudentClasses extends Controller {
 		$class = StudentClass::load($classID);
 		$template = Output::i()->renderTemplate('studentClasses', 'overview', [
 			'class'=> $class,
-			'students'=> $class->getStudents()
+			'students'=> $class->getStudents(),
+            'subjects'=> $class->getSubjects(),
 		]);
 		Output::i()->add($template);
 	}

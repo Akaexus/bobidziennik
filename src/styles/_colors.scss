@@ -7,5 +7,6 @@ $mediumColor1: hsl(0, 0%, 40%);
 $darkColor1: hsl(200, 16%, 16%);
 $darkColor2: hsl(200, 31%, 14%);
 
-$mainColor: hsl(190, 56%, 42%);
+// $mainColor: hsl(190, 56%, 42%);
 $mainColor2: hsl(208, 30%, 22.5%);
+$mainColor: lighten($mainColor2, 30);

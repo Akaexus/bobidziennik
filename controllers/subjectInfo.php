@@ -21,8 +21,16 @@ class SubjectInfo extends Controller
 	}
 	public function execute()
 	{
-        $this->classId = $_GET['class'];
-        $this->subjectId = $_GET['subject'];
+        try {
+            if (isset(Request::i()->class) && isset(Request::i()->subject)) {
+                $this->classId = Request::i()->class;
+                $this->subjectId = Request::i()->subject;
+            } else {
+                throw new \InvalidArgumentException();
+            }
+        } catch (InvalidArgumentException $e) {
+            Output::i()->error(2137);
+        }
 	}
 }
 

@@ -43,16 +43,16 @@ class StudentClass extends ActiveRecord {
 				['id_klasy=?', $this->$columnID]
 			]
 		]));
-
-		$subjects = DB::i()->select('select * from '.Subject::$databaseTable.' where id in ('.implode(',', $subjectsIDs).')');
-		$subjects = DB::i()->select([
+;
+		$subjects = array_map(function($s) {
+            return new Subject($s);
+        } ,DB::i()->select([
 			'select'=> '*',
 			'from'=> Subject::$databaseTable,
 			'where'=> [
-				['id in ('.implode(',', array_map(function(){return '?';}, $subjectsIDs)), $subjectsIDs]
+				['id in ('.implode(',', array_map(function(){return '?';}, $subjectsIDs)).')', $subjectsIDs]
 			]
-		]);
-
+		]));
 		return $subjects;
 	}
 	public static function form($defaultValues = null) {
