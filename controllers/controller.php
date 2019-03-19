@@ -13,9 +13,6 @@ abstract class Controller {
 	    'login'=> [
 	        'permissions'=> ['g']
 	    ],
-	    'marks' => [
-	    	'permissions'=> ['t']
-	    ],
 		'studentStats' => [
 			'permissions'=> ['u']
 		],

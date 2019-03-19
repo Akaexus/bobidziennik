@@ -2,6 +2,9 @@
 	<img src="src/styles/assets/bonzibuddy.gif">
 	<h2>Błąd</h2>
 	{if $errorCode}
-		<span>{$errorCode}</span>
+		<h3>#{$errorCode}</h3>
+	{/if}
+	{if $message}
+		<span>{$message}</span>
 	{/if}
 </div>

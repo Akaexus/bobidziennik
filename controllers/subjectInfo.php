@@ -30,7 +30,7 @@ class SubjectInfo extends Controller
                 throw new \InvalidArgumentException();
             }
         } catch (InvalidArgumentException $e) {
-            Output::i()->error(2137);
+            Output::i()->error(1000, 'Nieprawidłowy przedmiot!');
         }
 	}
 }
