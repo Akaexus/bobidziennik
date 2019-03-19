@@ -6,6 +6,7 @@ class Output {
 	public $cssFiles = [];
 	public $jsFiles = [];
     public $showHeader = true;
+    public $showFooter = true;
 	protected $templatingEngine;
 
 	public function __construct() {
@@ -42,8 +43,10 @@ class Output {
 
 	public function renderTemplate($controller, $template, $params = []) {
         $header = $this->showHeader ? $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/core/header.phtml", []) : null;
+        $footer = $this->showFooter ? $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/core/footer.phtml", []) : null;
         $params['controller'] = Request::i()->controller;
         $params['header'] = $header;
+        $params['footer'] = $footer;
 		$output = $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
 		return $output;
 	}

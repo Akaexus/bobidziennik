@@ -1,0 +1,33 @@
+footer {
+  background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
+	padding: 1.5rem 0 0 1rem;
+	color: #fff;
+  .inner{
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 15px;
+      grid-auto-rows: minmax(100px, auto);
+
+      .powered{
+
+        img{
+         height: 50px;
+         filter: invert(100%);
+         }
+
+         .wrap {
+           display: grid;
+           grid-template-columns: repeat(6, 2fr);
+           grid-gap:0.5px;
+           grid-auto-rows: minmax(50px, auto);
+
+         }
+
+
+      }
+
+    }
+  }
+
+}

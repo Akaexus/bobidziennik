@@ -13,6 +13,9 @@
     <div id="wrapper">
       {$output|noescape}
     </div>
+    {if $footer}
+      {$footer|noescape}
+    {/if}
     {foreach $jsFiles as $jsFile}
     <script src="{$jsFile}" charset="utf-8"></script>
     {/foreach}

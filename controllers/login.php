@@ -33,5 +33,6 @@ class Login extends Controller {
 	public function execute()
 	{
 		Output::i()->showHeader = false;
+		Output::i()->showFooter = false;
 	}
 }
