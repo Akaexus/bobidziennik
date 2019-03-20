@@ -6,6 +6,7 @@ class SubjectInfo extends Controller
 	{
         $class = StudentClass::load($this->classId);
         $subject = Subject::load($this->subjectId);
+        Output::i()->title = "Przedmiot {$subject->name()}";
         $students = $class->getStudents();
 
         foreach ($students as $student) {

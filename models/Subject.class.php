@@ -9,6 +9,11 @@ class Subject extends ActiveRecord {
 		'id',
 		'nazwa'
 	];
+
+    public function name() {
+        return $this->nazwa;
+    }
+
     public function __toString()
     {
         return $this->nazwa;

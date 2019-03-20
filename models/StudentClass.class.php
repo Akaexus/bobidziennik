@@ -17,6 +17,10 @@ class StudentClass extends ActiveRecord {
         return "{$this->rok} {$this->symbol}";
     }
 
+    public function name() {
+        return "{$this->rok}{$this->symbol}";
+    }
+
 	public function getStudents() {
 		$columnID = static::$idColumn;
 		$students = array_map(function ($studentData) {

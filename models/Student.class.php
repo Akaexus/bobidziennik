@@ -16,6 +16,10 @@ class Student extends ActiveRecord {
 		'nr_dziennika',
 	];
 
+    public function name() {
+        return "{$this->imie} {$this->nazwisko}";
+    }
+
 	public function __toString() {
 		return "{$this->imie} {$this->nazwisko}";
 	}
