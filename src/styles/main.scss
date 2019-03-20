@@ -11,7 +11,9 @@
 @import 'components/mark';
 @import 'components/timetable';
 
-
+html {
+  height: 100%;
+}
 
 
 body {
@@ -19,9 +21,15 @@ body {
   font-family: Poppins, Arial, Helvetica, sans-serif;
   color: $darkColor1;
   font-size: 14px;
+
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
 }
 #wrapper {
 	position: relative;
+  flex: 1;
 }
 
 input {
