@@ -3,13 +3,19 @@
 class Timetable extends Controller {
     public function execute()
     {
-        // code...
+        Output::i()->addBreadcrumb([
+            ['name'=> 'Plany lekcji', 'url'=> '?s=timetable'],
+        ]);
     }
 
     public function manage() {
         if (isset(Request::i()->class)) {
             try {
-                $class = StudentClass::load(Request::i()->class);
+                $classID = Request::i()->class;
+                $class = StudentClass::load($classID);
+                Output::i()->addBreadcrumb([
+                    ['name'=> $class->name(), 'url'=> "?s=timetable&class={$classID}"],
+                ]);
                 Output::i()->title = "Plan lekcji klasy {$class->name()}";
                 $timetable = $class->getTimetable();
                 $template = Output::i()->renderTemplate('timetable', 'timetable', [

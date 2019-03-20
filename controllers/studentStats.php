@@ -10,6 +10,11 @@ class StudentStats extends Controller
         $studentClass = $student->getClass();						// pobranie informacji o klasie
         $studentLeader = Teacher::load($studentClass->wychowawca);	// pobranie informacji o wychowawcy
         Output::i()->title = "Uczen {$student->name()}";
+        Output::i()->addBreadcrumb([
+            ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
+            ['name'=> $studentClass->name(), 'url'=> "?s=studentClasses&do=overview&id={$studentClass->id}"],
+            ['name'=> $student->name(), 'url'=> "?s=studentStats&id={$student->id}"],
+        ]);
         $subjects = array_map(function($student) {					// pobranie informacji o przedmiotach
             return new Subject($student);
         }, DB::i()->select([
@@ -44,6 +49,13 @@ class StudentStats extends Controller
         if (User::loggedIn()->isNauczyciel()) {
             Output::i()->title = 'Edytuj ucznia';
             $user = User::load($this->student->id_konta);
+            $class = $this->student->getClass();
+            Output::i()->addBreadcrumb([
+                ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
+                ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+                ['name'=> $this->student->name(), 'url'=> "?s=studentStats&id={$this->student->id}"],
+                ['name'=> 'Edytuj', 'url'=> "?s=studentStats&do=edit&id={$this->student->id}"],
+            ]);
             $form = Student::form([
                 'email'=> $user->email,
                 'login'=> $user->login,
@@ -77,6 +89,13 @@ class StudentStats extends Controller
                         'student'=> $this->student,
                         'subject'=> $subject,
                         'markForm'=> $form,
+                    ]);
+                    $class = $this->student->getClass();
+                    Output::i()->addBreadcrumb([
+                        ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
+                        ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+                        ['name'=> $subject->name(), 'url'=> "?s=subjectInfo&class={$class->id}&subject={$subject->id}"],
+                        ['name'=> 'Dodaj ocene', 'url'=> "?s=studentStats&do=addMark&id={$this->student->id}&subject={$subject->id}"],
                     ]);
                     if ($form->isSuccess()) {
                         $values = $form->getValues();

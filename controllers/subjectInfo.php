@@ -6,6 +6,11 @@ class SubjectInfo extends Controller
 	{
         $class = StudentClass::load($this->classId);
         $subject = Subject::load($this->subjectId);
+        Output::i()->addBreadcrumb([
+            ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
+            ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+            ['name'=> $subject->name(), 'url'=> "?s=subjectInfo&class={$class->id}&subject={$subject->id}"],
+        ]);
         Output::i()->title = "Przedmiot {$subject->name()}";
         $students = $class->getStudents();
 
