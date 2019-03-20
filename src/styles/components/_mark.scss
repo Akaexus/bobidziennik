@@ -1,0 +1,17 @@
+.addMark {
+  form {
+    th {
+
+    }
+    td {
+      label {
+        input {
+          &:checked {
+            background: red;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+}

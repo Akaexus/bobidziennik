@@ -6,13 +6,13 @@
 		<nav id="mainNav">
 			<ul>
 				<li>
-					<a href="#">
-						Opcja 1
+					<a href="?">
+						Strona główna
 					</a>
 				</li>
 				<li>
-					<a href="#">
-						Opcja 2
+					<a href="?s=timetable">
+						Plan lekcji
 					</a>
 				</li>
 				<li>
@@ -33,6 +33,7 @@
 			</ul>
 		</nav>
 		<nav id="secondaryNav">
+			<div>Zalogowano jako <span class="username">{User::loggedIn()->login}</span></div>
 			<ul>
 				<li>
 					<a href="?s=logout">

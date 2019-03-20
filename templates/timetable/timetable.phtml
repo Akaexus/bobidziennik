@@ -1,0 +1,29 @@
+<h2>Plan lekcji klasy {$class}</h2>
+{if $timetable}
+  <table class="table timetable">
+    <thead>
+      <tr>
+        <th></th>
+        {foreach array_keys($timetable) as $day}
+          <th>{$day}</th>
+        {/foreach}
+      </tr>
+    </thead>
+    <tbody>
+      {foreach $hours as $hourIndex => $hour}
+        <tr>
+          <th>{$hour}</th>
+          {foreach $timetable as $day => $lessons}
+            {if $lessons[$hourIndex]}
+              <td class="lesson">{$lessons[$hourIndex]}</td>
+            {else}
+              <td></td>
+            {/if}
+          {/foreach}
+        </tr>
+      {/foreach}
+    </tbody>
+  </table>
+{else}
+  Ta klasa nie ma jeszcze żadnych przedmiotów.
+{/if}

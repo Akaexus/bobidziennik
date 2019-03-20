@@ -1,0 +1,10 @@
+.timetable {
+  width: 100%;
+  td {
+    text-align: center !important;
+    padding: 1rem;
+    &.lesson {
+      font-weight: 500;
+    }
+  }
+}

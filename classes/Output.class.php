@@ -28,9 +28,10 @@ class Output {
 		$this->output .= $string;
 	}
 
-    public function error($errorCode = null) {
+    public function error($errorCode = null, $message = null) {
         $this->add($this->renderTemplate('core', 'error', [
             'errorCode'=> $errorCode,
+            'message'=> $message,
         ]));
         echo $this->render();
         die();

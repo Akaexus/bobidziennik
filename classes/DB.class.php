@@ -14,7 +14,7 @@
 			try {
 				$this->c = new PDO($dsn, $config['user'], $config['pass']);
 			} catch (Exception $e) {
-				exit('Oops!');
+                die('<h1>Problem z bazą danych!</h1><p>Skontaktuj się z administratorem serwisu.</p>');
 			}
 		}
 

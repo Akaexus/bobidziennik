@@ -15,7 +15,8 @@ class SubjectInfo extends Controller
 
         $template = Output::i()->renderTemplate('subjectInfo', 'subjectInfo', [
             'students'=> $students,
-            'subject'=> $subject
+            'subject'=> $subject,
+            'class'=> $class,
         ]);
         Output::i()->add($template);
 	}
@@ -29,7 +30,7 @@ class SubjectInfo extends Controller
                 throw new \InvalidArgumentException();
             }
         } catch (InvalidArgumentException $e) {
-            Output::i()->error(2137);
+            Output::i()->error(1000, 'Nieprawidłowy przedmiot!');
         }
 	}
 }

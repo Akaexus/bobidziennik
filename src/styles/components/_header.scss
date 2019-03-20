@@ -21,6 +21,12 @@ header {
 				position: absolute;
 				bottom: 0;
 				right: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.username {
+					font-weight: 500;
+				}
 			}
 			ul {
 				list-style: none;
@@ -45,7 +51,5 @@ header {
 				}
 			}
 		}
-
 	}
-
 }

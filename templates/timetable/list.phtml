@@ -1,0 +1,12 @@
+<h2>Lista klas</h2>
+{if $classes}
+	<ul>
+		{foreach $classes as $class}
+		  <li>
+        <a href="?s=timetable&class={$class->id}">
+          {$class->nazwa}
+        </a>
+      </li>
+		{/foreach}
+	</ul>
+{/if}

@@ -13,6 +13,10 @@ class StudentClass extends ActiveRecord {
 		'wychowawca'
 	];
 
+    public function __toString() {
+        return "{$this->rok} {$this->symbol}";
+    }
+
 	public function getStudents() {
 		$columnID = static::$idColumn;
 		$students = array_map(function ($studentData) {
@@ -27,6 +31,43 @@ class StudentClass extends ActiveRecord {
 		return $students;
 	}
 
+    public static $hours = [
+            '7:20 - 8:05',
+            '8:10 - 8:55',
+            '9:05 - 9:50',
+            '10:00 - 10:45',
+            '11:05 - 11:50',
+            '12:00 - 12:45',
+            '12:55 - 13:40',
+            '14:00 - 14:45',
+            '14:55 - 15:40',
+            '15:45 - 16:30',
+            '16:35 - 17:20',
+            '17:25 - 18:10',
+        ];
+
+    public function getTimetable() {
+        $days = [
+            'Poniedziałek',
+            'Wtorek',
+            'Środa',
+            'Czwartek',
+            'Piątek'
+        ];
+        $subjects = $this->getSubjects();
+        if (!$subjects) {
+            return null;
+        }
+
+        $timetable = [];
+        foreach ($days as $day) {
+            $timetable[$day] = [];
+            foreach (static::$hours as $index => $hour) {
+                $timetable[$day][$index] = rand(0, 1) ? $subjects[rand(0, count($subjects)-1)] : null;
+            }
+        }
+        return $timetable;
+    }
 
 	public function leadingTeacher() {
 		return Teacher::load($this->wychowawca);
