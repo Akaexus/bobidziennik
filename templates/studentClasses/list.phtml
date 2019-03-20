@@ -1,6 +1,8 @@
 <h2>Lista klas</h2>
-<a href="?s=studentClasses&do=add">Dodaj klase</a>
+<a href="?s=studentClasses&do=add" class="button">Dodaj klase</a>
 {if $classes}
+<div class="shadow">
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -19,14 +21,16 @@
 					<td>{$class->symbol}</td>
 					<td>{$class->leadingTeacher()}</td>
 					<td>
-						<a href="?s=studentClasses&do=overview&id={$class->id}">
+						<a href="?s=studentClasses&do=overview&id={$class->id}" class="controls">
 							Wyświetl uczniów
 						</a>
-						<a href="?s=studentClasses&do=edit&id={$class->id}">Edytuj</a>
+						<a href="?s=studentClasses&do=edit&id={$class->id}" class="controls">Edytuj</a>
 					</td>
 
 				</tr>
 			{/foreach}
 		</tbody>
 	</table>
+</div>
+
 {/if}

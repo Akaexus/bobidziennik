@@ -3,8 +3,8 @@ footer {
   background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
 	padding: 1.5rem 0;
 	color: #fff;
-  
-  .inner{
+
+  .inner {
     @include main_width;
     margin: 0 auto;
     .wrapper {
