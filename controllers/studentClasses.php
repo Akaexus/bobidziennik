@@ -105,17 +105,7 @@ class StudentClasses extends Controller
     public function manage()
     {
         Output::i()->title = 'Lista klas';
-        $classes = array_map(
-            function($student) {
-                return new StudentClass($student);
-            },
-            DB::i()->select(
-                [
-                    'select'=> '*',
-                    'from'=> StudentClass::$databaseTable
-                ]
-            )
-        );
+        $classes = StudentClass::loadAll();
         $template = Output::i()->renderTemplate(
             'studentClasses',
             'list',

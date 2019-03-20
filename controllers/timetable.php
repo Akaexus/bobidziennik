@@ -40,17 +40,7 @@ class Timetable extends Controller
 
         } else {
             Output::i()->title = 'Lista klas';
-            $classes = array_map(
-                function($e) {
-                    return new StudentClass($e);
-                },
-                DB::i()->select(
-                    [
-                        'select'=> '*',
-                        'from'=> StudentClass::$databaseTable
-                    ]
-                )
-            );
+            $classes = StudentClass::loadAll();
             $template = Output::i()->renderTemplate(
                 'timetable',
                 'list',

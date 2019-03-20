@@ -81,6 +81,23 @@ abstract class ActiveRecord
         return new $class($entity);
     }
 
+    public static function loadAll($where = null)
+    {
+        $query = [
+            'select'=> '*',
+            'from'=> static::$databaseTable
+        ];
+        if ($where) {
+            $query['where'] = $where;
+        }
+        return array_map(
+            function($e) {
+                return new static($e);
+            },
+            DB::i()->select($query)
+        );
+    }
+
     public function delete()
     {
         $idColumn = static::$idColumn;

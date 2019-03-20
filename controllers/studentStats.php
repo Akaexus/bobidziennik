@@ -17,34 +17,12 @@ class StudentStats extends Controller
                 ['name'=> $student->name(), 'url'=> "?s=studentStats&id={$student->id}"],
             ]
         );
-        $subjects = array_map(
-            function($student) {
-                return new Subject($student);
-            },
-            DB::i()->select(
-                [
-                    'select'=> '*',
-                    'from'=> Subject::$databaseTable
-                ]
-            )
+        $subjects = Subject::loadAll();
+        $marks = Mark::loadAll(
+            [
+                ["id_ucznia = ?", $student->id]
+            ]
         );
-
-
-        $marks = array_map(
-            function($student) {
-                return new Mark($student);
-            },
-            DB::i()->select(
-                [
-                    'select'=> '*',
-                    'from'=> Mark::$databaseTable,
-                    'where'=> [
-                        ["id_ucznia = ?", $student->id]
-                    ]
-                ]
-            )
-        );
-
 
         $template = Output::i()->renderTemplate(
             'studentStats',
@@ -113,7 +91,7 @@ class StudentStats extends Controller
                             'student'=> $this->student,
                             'subject'=> $subject,
                             'markForm'=> $form,
-                        ],
+                        ]
                     );
                     $class = $this->student->getClass();
                     Output::i()->addBreadcrumb(
