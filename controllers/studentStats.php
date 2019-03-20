@@ -9,7 +9,7 @@ class StudentStats extends Controller
         $student = $this->student;					// pobranie danych ucznia
         $studentClass = $student->getClass();						// pobranie informacji o klasie
         $studentLeader = Teacher::load($studentClass->wychowawca);	// pobranie informacji o wychowawcy
-
+        Output::i()->title = "Uczen {$student->name()}";
         $subjects = array_map(function($student) {					// pobranie informacji o przedmiotach
             return new Subject($student);
         }, DB::i()->select([
@@ -42,6 +42,7 @@ class StudentStats extends Controller
     public function edit()
     {
         if (User::loggedIn()->isNauczyciel()) {
+            Output::i()->title = 'Edytuj ucznia';
             $user = User::load($this->student->id_konta);
             $form = Student::form([
                 'email'=> $user->email,
@@ -68,6 +69,7 @@ class StudentStats extends Controller
     public function addMark() {
         if (User::loggedIn()->isNauczyciel()) {
             if (ctype_digit(Request::i()->subject)) {
+                Output::i()->title = 'Dodaj ocene';
                 try {
                     $form = Mark::form();
                     $subject = Subject::load(Request::i()->subject);

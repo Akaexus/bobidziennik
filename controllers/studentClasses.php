@@ -7,6 +7,7 @@ class StudentClasses extends Controller {
     {
 		$classID = $_GET['id'];
 		$class = StudentClass::load($classID);
+        Output::i()->title = 'Klasa '.$class->name();
 		$template = Output::i()->renderTemplate('studentClasses', 'overview', [
 			'class'=> $class,
 			'students'=> $class->getStudents(),
@@ -23,6 +24,7 @@ class StudentClasses extends Controller {
     {
         $id = Request::i()->id;
         if (ctype_digit($id)) {
+            Output::i()->title = 'Edytuj klase';
             $class = StudentClass::load($id);
             $columns = StudentClass::getColumns();
             $defaultValues = [];
@@ -47,6 +49,7 @@ class StudentClasses extends Controller {
 
 	public function add()
     {
+        Output::i()->title = 'Dodaj klase';
 		$form = StudentClass::form();
 		if ($form->isSuccess()) {
 			$fv = $form->getValues();
@@ -69,6 +72,7 @@ class StudentClasses extends Controller {
 
 	public function manage()
 	{
+        Output::i()->title = 'Lista klas';
 		$classes = array_map(function($student) {
 			return new StudentClass($student);
 		}, DB::i()->select([
@@ -85,6 +89,7 @@ class StudentClasses extends Controller {
         try {
             $classID = Request::i()->id;
             if (ctype_digit($classID)) {
+                Output::i()->title = 'Dodaj ucznia';
                 $class = StudentClass::load($classID);
                 $form = Student::form();
                 if ($form->isSuccess()) {
@@ -122,7 +127,5 @@ class StudentClasses extends Controller {
         } catch (\Exception $e) {
 
         }
-
-
     }
 }

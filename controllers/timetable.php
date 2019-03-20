@@ -10,6 +10,7 @@ class Timetable extends Controller {
         if (isset(Request::i()->class)) {
             try {
                 $class = StudentClass::load(Request::i()->class);
+                Output::i()->title = "Plan lekcji klasy {$class->name()}";
                 $timetable = $class->getTimetable();
                 $template = Output::i()->renderTemplate('timetable', 'timetable', [
                     'class'=> $class,
@@ -22,6 +23,7 @@ class Timetable extends Controller {
             }
 
         } else {
+            Output::i()->title = 'Lista klas';
             $classes = array_map(function($e) {return new StudentClass($e);}, DB::i()->select([
                 'select'=> '*',
                 'from'=> StudentClass::$databaseTable
