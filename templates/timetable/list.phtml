@@ -4,7 +4,7 @@
 		{foreach $classes as $class}
 		  <li>
         <a href="?s=timetable&class={$class->id}">
-          {$class->nazwa}
+          {$class->name()}
         </a>
       </li>
 		{/foreach}
