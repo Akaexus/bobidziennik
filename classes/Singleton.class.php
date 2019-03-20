@@ -1,15 +1,14 @@
 <?php
-class Singleton
+abstract class Singleton
 {
-    public static $instance;
+    public static $instances;
 
     static function i()
     {
-        if (static::$instance === null) {
-            include BD_ROOT_PATH.'db.php';
-            $class = get_called_class();
-            static::$instance = new $class($DB);
+        $class = get_called_class();
+        if (!isset(self::$instances[$class])) {
+            self::$instances[$class] = new static;
         }
-        return static::$instance;
+        return static::$instances[$class];
     }
 }

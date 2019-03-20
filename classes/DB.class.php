@@ -144,4 +144,15 @@ class DB extends Singleton
         return $this->c->lastInsertId();
     }
 
+    // SINGLETON
+    //
+    static function i()
+    {
+        $class = get_called_class();
+        if (!isset(self::$instances[$class])) {
+            include BD_ROOT_PATH.'db.php';
+            self::$instances[$class] = new static($DB);
+        }
+        return static::$instances[$class];
+    }
 }
