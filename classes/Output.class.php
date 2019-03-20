@@ -8,6 +8,7 @@ class Output extends Singleton
     public $jsFiles = [];
     public $showHeader = true;
     public $showFooter = true;
+    public $showBreadcrumb = true;
     protected $templatingEngine;
     public $breadcrumb = [[
         'name'=> 'Bobidziennik',
@@ -66,7 +67,7 @@ class Output extends Singleton
                 'title'=> $this->title,
                 'output'=> $this->_output,
                 'jsFiles'=> $this->jsFiles,
-                'breadcrumb'=> $this->breadcrumb,
+                'breadcrumb'=> $this->showBreadcrumb ? $this->breadcrumb : null,
             ]
         );
         if ($toString) {

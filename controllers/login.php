@@ -41,5 +41,6 @@ class Login extends Controller
         Output::i()->title = 'Zaloguj';
         Output::i()->showHeader = false;
         Output::i()->showFooter = false;
+        Output::i()->showBreadcrumb = false;
     }
 }
