@@ -1,55 +1,55 @@
 header {
-	background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
-	padding: 1.5rem 0 0 0;
-	color: #fff;
+    background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
+    padding: 1.5rem 0 0 0;
+    color: #fff;
 
-	.inner {
-		@include main_width;
-		position: relative;
-		margin: 0 auto;
-		a {
-			color: #fff;
-			h1 {
-				margin: 0;
-				font-weight: 300;
-				font-size: 2rem;
-			}
-		}
+    .inner {
+        @include main_width;
+        position: relative;
+        margin: 0 auto;
+        a {
+            color: #fff;
+            h1 {
+                margin: 0;
+                font-weight: 300;
+                font-size: 2rem;
+            }
+        }
 
-		nav {
-			&#secondaryNav {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				.username {
-					font-weight: 500;
-				}
-			}
-			ul {
-				list-style: none;
-				display: flex;
-				margin: 0;
-				> li {
-					 > a {
-						color: #fff;
-						display: block;
-						background: lighten($mainColor2, 10);
-						padding: 0.5rem 1rem;
-						transition: all .1s;
-						&:hover {
-							transition: all .1s;
-							background: #fff;
-							color: $darkColor1;
-						}
-					}
-					&:not(:last-of-type) {
-						margin-right: 0.2rem;
-					}
-				}
-			}
-		}
-	}
+        nav {
+            &#secondaryNav {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .username {
+                    font-weight: 500;
+                }
+            }
+            ul {
+                list-style: none;
+                display: flex;
+                margin: 0;
+                > li {
+                     > a {
+                        color: #fff;
+                        display: block;
+                        background: lighten($mainColor2, 10);
+                        padding: 0.5rem 1rem;
+                        transition: all .1s;
+                        &:hover {
+                            transition: all .1s;
+                            background: #fff;
+                            color: $darkColor1;
+                        }
+                    }
+                    &:not(:last-of-type) {
+                        margin-right: 0.2rem;
+                    }
+                }
+            }
+        }
+    }
 }

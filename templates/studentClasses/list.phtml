@@ -1,32 +1,32 @@
 <h2>Lista klas</h2>
 <a href="?s=studentClasses&do=add">Dodaj klase</a>
 {if $classes}
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nazwa</th>
-				<th>Rok</th>
-				<th>Symbol</th>
-				<th>Wychowawca</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{foreach $classes as $class}
-				<tr>
-					<td>{$class->nazwa}</td>
-					<td>{$class->rok}</td>
-					<td>{$class->symbol}</td>
-					<td>{$class->leadingTeacher()}</td>
-					<td>
-						<a href="?s=studentClasses&do=overview&id={$class->id}">
-							Wyświetl uczniów
-						</a>
-						<a href="?s=studentClasses&do=edit&id={$class->id}">Edytuj</a>
-					</td>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Rok</th>
+                <th>Symbol</th>
+                <th>Wychowawca</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $classes as $class}
+                <tr>
+                    <td>{$class->nazwa}</td>
+                    <td>{$class->rok}</td>
+                    <td>{$class->symbol}</td>
+                    <td>{$class->leadingTeacher()}</td>
+                    <td>
+                        <a href="?s=studentClasses&do=overview&id={$class->id}">
+                            Wyświetl uczniów
+                        </a>
+                        <a href="?s=studentClasses&do=edit&id={$class->id}">Edytuj</a>
+                    </td>
 
-				</tr>
-			{/foreach}
-		</tbody>
-	</table>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
 {/if}

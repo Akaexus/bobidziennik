@@ -2,15 +2,17 @@
 
 class SubjectInfo extends Controller
 {
-	public function manage()
-	{
+    public function manage()
+    {
         $class = StudentClass::load($this->classId);
         $subject = Subject::load($this->subjectId);
-        Output::i()->addBreadcrumb([
-            ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
-            ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
-            ['name'=> $subject->name(), 'url'=> "?s=subjectInfo&class={$class->id}&subject={$subject->id}"],
-        ]);
+        Output::i()->addBreadcrumb(
+            [
+                ['name'=> 'Klasy', 'url'=> "?s=studentClasses"],
+                ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+                ['name'=> $subject->name(), 'url'=> "?s=subjectInfo&class={$class->id}&subject={$subject->id}"],
+            ]
+        );
         Output::i()->title = "Przedmiot {$subject->name()}";
         $students = $class->getStudents();
 
@@ -19,15 +21,19 @@ class SubjectInfo extends Controller
         }
 
 
-        $template = Output::i()->renderTemplate('subjectInfo', 'subjectInfo', [
-            'students'=> $students,
-            'subject'=> $subject,
-            'class'=> $class,
-        ]);
+        $template = Output::i()->renderTemplate(
+            'subjectInfo',
+            'subjectInfo',
+            [
+                'students'=> $students,
+                'subject'=> $subject,
+                'class'=> $class,
+            ]
+        );
         Output::i()->add($template);
-	}
-	public function execute()
-	{
+    }
+    public function execute()
+    {
         try {
             if (isset(Request::i()->class) && isset(Request::i()->subject)) {
                 $this->classId = Request::i()->class;
@@ -38,7 +44,7 @@ class SubjectInfo extends Controller
         } catch (InvalidArgumentException $e) {
             Output::i()->error(1000, 'Nieprawidłowy przedmiot!');
         }
-	}
+    }
 }
 
 

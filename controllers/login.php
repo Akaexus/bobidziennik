@@ -1,8 +1,10 @@
 <?php
 
-class Login extends Controller {
+class Login extends Controller
+{
 
-	public function manage() {
+    public function manage()
+    {
         if (User::loggedIn()) {
             Output::i()->add('zalogowany');
         } else {
@@ -14,9 +16,13 @@ class Login extends Controller {
                 ->setRequired('Wypełnij pole login.')
                 ->setHtmlAttribute('placeholder', 'Hasło');
             $form->addSubmit('send', 'Zaloguj');
-            $template = Output::i()->renderTemplate('login', 'form', [
-                        'form'=> $form
-            ]);
+            $template = Output::i()->renderTemplate(
+                'login',
+                'form',
+                [
+                    'form'=> $form
+                ]
+            );
             if ($form->isSuccess()) {
                 $formValues = $form->getValues();
                 $logged = User::login($formValues['login'], $formValues['pass']);
@@ -29,11 +35,11 @@ class Login extends Controller {
                 Output::i()->add($template);
             }
         }
-	}
-	public function execute()
-	{
+    }
+    public function execute()
+    {
         Output::i()->title = 'Zaloguj';
-		Output::i()->showHeader = false;
-		Output::i()->showFooter = false;
-	}
+        Output::i()->showHeader = false;
+        Output::i()->showFooter = false;
+    }
 }
