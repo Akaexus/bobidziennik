@@ -8,6 +8,9 @@ class StudentClasses extends Controller {
 		$classID = $_GET['id'];
 		$class = StudentClass::load($classID);
         Output::i()->title = 'Klasa '.$class->name();
+        Output::i()->addBreadcrumb([
+            ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+        ]);
 		$template = Output::i()->renderTemplate('studentClasses', 'overview', [
 			'class'=> $class,
 			'students'=> $class->getStudents(),
@@ -17,7 +20,9 @@ class StudentClasses extends Controller {
 	}
 
 	public function execute() {
-
+        Output::i()->addBreadcrumb([
+            ['name'=> 'Klasy', 'url'=> '?s=studentClasses']
+        ]);
 	}
 
     public function edit()
@@ -26,6 +31,10 @@ class StudentClasses extends Controller {
         if (ctype_digit($id)) {
             Output::i()->title = 'Edytuj klase';
             $class = StudentClass::load($id);
+            Output::i()->addBreadcrumb([
+                ['name'=> $class->name(), 'url'=> '?s=studentClasses&&id='.Request::i()->id],
+                ['name'=> 'Edytuj klase', 'url'=> '?s=studentClasses&do=edit&id='.Request::i()->id],
+            ]);
             $columns = StudentClass::getColumns();
             $defaultValues = [];
             foreach ($columns as $column) {
@@ -49,6 +58,9 @@ class StudentClasses extends Controller {
 
 	public function add()
     {
+        Output::i()->addBreadcrumb([
+            ['name'=> 'Dodaj klase', 'url'=> '?s=studentClasses&do=add']
+        ]);
         Output::i()->title = 'Dodaj klase';
 		$form = StudentClass::form();
 		if ($form->isSuccess()) {
@@ -89,8 +101,12 @@ class StudentClasses extends Controller {
         try {
             $classID = Request::i()->id;
             if (ctype_digit($classID)) {
-                Output::i()->title = 'Dodaj ucznia';
                 $class = StudentClass::load($classID);
+                Output::i()->title = 'Dodaj ucznia';
+                Output::i()->addBreadcrumb([
+                    ['name'=> $class->name(), 'url'=> "?s=studentClasses&do=overview&id={$class->id}"],
+                    ['name'=> 'Dodaj ucznia', 'url'=> "?s=studentClasses&id={$classID}&do=addStudent"],
+                ]);
                 $form = Student::form();
                 if ($form->isSuccess()) {
                     $values = $form->getValues();

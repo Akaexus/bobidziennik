@@ -8,6 +8,14 @@ class Output {
     public $showHeader = true;
     public $showFooter = true;
 	protected $templatingEngine;
+    public $breadcrumb = [[
+        'name'=> 'Bobidziennik',
+        'url'=> '?'
+    ]];
+
+    public function addBreadcrumb($array) {
+        $this->breadcrumb = array_merge($this->breadcrumb, $array);
+    }
 
 	public function __construct() {
 		$this->templatingEngine = new Latte\Engine();
@@ -23,6 +31,7 @@ class Output {
 		}
 		header('Location: '.$url, 302);
 	}
+
 
 	public function add($string) {
 		$this->output .= $string;
@@ -41,7 +50,8 @@ class Output {
         $output = $this->renderTemplate('core', 'core', [
             'title'=> $this->title,
             'output'=> $this->output,
-            'jsFiles'=> $this->jsFiles
+            'jsFiles'=> $this->jsFiles,
+            'breadcrumb'=> $this->breadcrumb,
         ]);
         if ($toString) {
             return $output;

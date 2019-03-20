@@ -1,0 +1,25 @@
+.breadcrumb {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  .home {
+    height: .8rem;
+    color: #ffffff;
+    margin-right: 0.2rem;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    li {
+      display: block;
+      &:not(:last-of-type) {
+        margin-right: 1ch;
+      }
+      &:not(:last-of-type):after {
+        content: '\2192';
+      }
+    }
+  }
+}
