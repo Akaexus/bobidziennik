@@ -1,6 +1,6 @@
 <?php
 
-class Output
+class Output extends Singleton
 {
     private $_output;
     public $title;
@@ -85,14 +85,5 @@ class Output
         $params['footer'] = $footer;
         $output = $this->templatingEngine->renderToString(BD_ROOT_PATH."templates/{$controller}/{$template}.phtml", $params);
         return $output;
-    }
-
-    public static $instance;
-    static function i()
-    {
-        if (self::$instance === null) {
-            self::$instance = new Output;
-        }
-        return self::$instance;
     }
 }

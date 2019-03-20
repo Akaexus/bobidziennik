@@ -1,6 +1,6 @@
 <?php
 
-class DB
+class DB extends Singleton
 {
     public $config;
     public $c;
@@ -144,15 +144,4 @@ class DB
         return $this->c->lastInsertId();
     }
 
-    // SINGLETON
-    public static $instance;
-
-    static function i()
-    {
-        if (self::$instance === null) {
-            include BD_ROOT_PATH.'db.php';
-            self::$instance = new DB($DB);
-        }
-        return self::$instance;
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Request
+class Request extends Singleton
 {
     protected $__data = [];
     protected $__protectedProperties = [
@@ -25,15 +25,5 @@ class Request
         } else {
             $this->controller = array_keys($controllers)[0];
         }
-    }
-
-    public static $instance;
-    static function i()
-    {
-        if (self::$instance === null) {
-            include BD_ROOT_PATH.'db.php';
-            self::$instance = new Request;
-        }
-        return self::$instance;
     }
 }
