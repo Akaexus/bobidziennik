@@ -11,6 +11,22 @@
         {$header|noescape}
       {/if}
     <div id="wrapper">
+      {if $breadcrumb}
+        <div class="breadcrumb">
+          <a href="?">
+            <img class="home" src="src/styles/assets/house.svg">
+          </a>
+          <ul>
+            {foreach $breadcrumb as $page}
+              <li>
+                <a href="{$page['url']}">
+                  {$page['name']}
+                </a>
+              </li>
+            {/foreach}
+          </ul>
+        </div>
+      {/if}
       {$output|noescape}
     </div>
     {if $footer}
