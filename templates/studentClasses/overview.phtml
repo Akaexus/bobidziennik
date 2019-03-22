@@ -1,81 +1,83 @@
-<div class="classOverview">
-	<h2>Klasa {$class->symbol}</h2>
-	<table class="table">
-		<tbody>
-			<tr>
-				<td>Wychowawca</td>
-				<td>{$class->leadingTeacher()}</td>
-			</tr>
-			<tr>
-				<td>Rok</td>
-				<td>{$class->rok}</td>
-			</tr>
-			<tr>
-				<td>Nazwa</td>
-				<td>{$class->nazwa}</td>
-			</tr>
-			<tr>
-				<td>Liczba uczniów</td>
-				<td>{count($students)}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<div>
-		<a href="?s=studentClasses&do=edit&id={$class->id}" class="button">Edytuj klase</a>
-	</div>
-	<div>
-		<a href="?s=studentClasses&id={$class->id}&do=addStudent" class="button">Dodaj ucznia</a>
-	</div>
-</div>
-<div class="subjects">
-{if count($subjects)}
-    <h3>Przedmioty</h3>
-    <table class="table">
-        <tbody>
-            {foreach $subjects as $subject}
-            <tr>
-                <td>
-                    <a href="?s=subjectInfo&class={$class->id}&subject={$subject->id}">
-                        {$subject->nazwa}
-                    </a>
-                </td>
-            </tr>
-            {/foreach}
-        </tbody>
-    </table>
-{/if}
-</div>
-<div class="students">
-	{if count($students)}
-		<h3>Uczniowie</h3>
+<div class="layout">
+	<div class="classOverview">
+		<h2>Klasa {$class->symbol}</h2>
 		<table class="table">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Imie</th>
-					<th>Nazwisko</th>
-					<th>PESEL</th>
-					<th>Zdjęcie</th>
-				</tr>
-			</thead>
 			<tbody>
-				{foreach $students as $student}
-					<tr>
-						<td>{$student->nr_dziennika}</td>
-						<td>
-							<a href="?s=studentStats&id={$student->id}">{$student->imie}</a>
-						</td>
-						<td>
-							<a href="?s=studentStats&id={$student->id}">{$student->nazwisko}</a>
-						</td>
-						<td>{$student->pesel}</td>
-						<td>{$student->photo}</td>
-					</tr>
-				{/foreach}
+				<tr>
+					<td>Wychowawca</td>
+					<td>{$class->leadingTeacher()}</td>
+				</tr>
+				<tr>
+					<td>Rok</td>
+					<td>{$class->rok}</td>
+				</tr>
+				<tr>
+					<td>Nazwa</td>
+					<td>{$class->nazwa}</td>
+				</tr>
+				<tr>
+					<td>Liczba uczniów</td>
+					<td>{count($students)}</td>
+				</tr>
 			</tbody>
 		</table>
-	{else}
-		nie dodano jeszcze uczniów
+
+		<div>
+			<a href="?s=studentClasses&do=edit&id={$class->id}" class="button">Edytuj klase</a>
+		</div>
+		<div>
+			<a href="?s=studentClasses&id={$class->id}&do=addStudent" class="button">Dodaj ucznia</a>
+		</div>
+	</div>
+	<div class="subjects">
+	{if count($subjects)}
+	    <h3>Przedmioty</h3>
+	    <table class="table">
+	        <tbody>
+	            {foreach $subjects as $subject}
+	            <tr>
+	                <td>
+	                    <a href="?s=subjectInfo&class={$class->id}&subject={$subject->id}">
+	                        {$subject->nazwa}
+	                    </a>
+	                </td>
+	            </tr>
+	            {/foreach}
+	        </tbody>
+	    </table>
 	{/if}
+	</div>
+	<div class="students">
+		{if count($students)}
+			<h3>Uczniowie</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Imie</th>
+						<th>Nazwisko</th>
+						<th>PESEL</th>
+						<th>Zdjęcie</th>
+					</tr>
+				</thead>
+				<tbody>
+					{foreach $students as $student}
+						<tr>
+							<td>{$student->nr_dziennika}</td>
+							<td>
+								<a href="?s=studentStats&id={$student->id}">{$student->imie}</a>
+							</td>
+							<td>
+								<a href="?s=studentStats&id={$student->id}">{$student->nazwisko}</a>
+							</td>
+							<td>{$student->pesel}</td>
+							<td>{$student->photo}</td>
+						</tr>
+					{/foreach}
+				</tbody>
+			</table>
+		{else}
+			nie dodano jeszcze uczniów
+		{/if}
+	</div>
 </div>
