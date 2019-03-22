@@ -1,18 +1,14 @@
-@import '../config';
 footer {
   background: lighten($mainColor2, 10) url('./assets/header.jpg') no-repeat 50% 50% / cover;
-    padding: 1.5rem 0;
-    color: #fff;
-  
-  .inner{
+	padding: 1.5rem 0;
+	color: #fff;
+  .inner {
     @include main_width;
     margin: 0 auto;
     .wrapper {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      text-align: center;
-      flex: 1;
       .powered{
         img{
           height: 50px;
@@ -25,38 +21,38 @@ footer {
            grid-auto-rows: minmax(50px, auto);
            justify-content: center;
            align-items:center;
-           text-align: center;
          }
       }
       .social {
-        .icons {
+        .icon {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap:0.2px;
+          grid-auto-rows: minmax(20px, auto);
+          justify-content: center;
+          align-items:center;
+          width:50%;
+        }
+
+        .circle {
+          background-color: lighten($mainColor2, 10);
+          border-radius: 50%;
+          height: 50px;
+          width: 50px;
           display: flex;
           justify-content: center;
           align-items:center;
-          text-align: center;
-          .icon {
-            &:not(:last-of-type) {
-              margin-right: 10px;
-            }
-            background-color: lighten($mainColor2, 10);
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
-            display: flex;
-            justify-content: center;
-            align-items:center;
-            text-align: center;
-            &, &:hover {
-              transition: 0.2s;
-            }
-            &:hover {
-              transform: scale(1.2);
-              cursor: pointer;
-            }
-            img {
-              height: 25px;
-            }
+          &, &:hover {
+            transition: 0.2s;
           }
+          &:hover {
+            transform: scale(1.2);
+            cursor: pointer;
+          }
+        }
+        img{
+          height: 30px;
+          filter: invert(100%);
         }
       }
     }

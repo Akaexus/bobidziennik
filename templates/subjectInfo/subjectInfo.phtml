@@ -1,29 +1,29 @@
 <h2>Klasa {$class}</h2>
 <h3>Przedmiot {$subject}</h3>
 <table class="table">
-    <thead>
-    </thead>
-    <tbody>
-        {foreach $students as $student}
-                <tr>
-                    <td>{$student->imie} {$student->nazwisko}</td>
-                    <td>
-                        {if count($student->marks)}
-                            {foreach $student->marks as $mark}
-                                {if $student->id === $mark->id_ucznia}
-                                <div>{$mark->ocena}</div>
-                                {/if}
-                            {/foreach}
-                        {else}
-                            brak ocen
-                        {/if}
-                    </td>
-                    <td>
-                        <a href="?s=studentStats&do=addMark&id={$student->id}&subject={$subject->id}">
-                            Dodaj ocene
-                        </a>
-                    </td>
-                </tr>
-            {/foreach}
-    </tbody>
+	<thead>
+	</thead>
+	<tbody>
+		{foreach $students as $student}
+				<tr>
+					<td>{$student->imie} {$student->nazwisko}</td>
+					<td>
+						{if count($student->marks)}
+							{foreach $student->marks as $mark}
+								{if $student->id === $mark->id_ucznia}
+								<div>{$mark->ocena}</div>
+								{/if}
+							{/foreach}
+						{else}
+							brak ocen
+						{/if}
+					</td>
+					<td>
+						<a href="?s=studentStats&do=addMark&id={$student->id}&subject={$subject->id}" class="controls">
+							Dodaj ocene
+						</a>
+					</td>
+				</tr>
+			{/foreach}
+	</tbody>
 </table>

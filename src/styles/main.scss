@@ -12,9 +12,14 @@
 @import 'components/mark';
 @import 'components/timetable';
 
+@import 'components/buttons';
+
 html {
   height: 100%;
 }
+
+@import 'components/breadcrumb';
+
 
 
 body {
@@ -22,14 +27,9 @@ body {
   font-family: Poppins, Arial, Helvetica, sans-serif;
   color: $darkColor1;
   font-size: 14px;
-
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-
 }
 #wrapper {
-    position: relative;
+  position: relative;
   flex: 1;
 }
 
@@ -48,4 +48,10 @@ a {
     margin: 0 auto;
     padding: 1.5rem;
     @include main_width;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -22,7 +22,7 @@
     </table>
 
 {if User::loggedIn()->isNauczyciel()}
-    <a href="?s=studentStats&do=edit&id={$student->id}">Edytuj</a>
+	<a href="?s=studentStats&do=edit&id={$student->id}" class="button">Edytuj</a>
 {/if}
 
 <h2>Oceny</h2>

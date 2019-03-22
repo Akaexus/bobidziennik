@@ -14,6 +14,7 @@ class SubjectInfo extends Controller
             ]
         );
         Output::i()->title = "Przedmiot {$subject->name()}";
+
         $students = $class->getStudents();
 
         foreach ($students as $student) {

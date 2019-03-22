@@ -121,7 +121,6 @@ class StudentClasses extends Controller
         try {
             $classID = Request::i()->id;
             if (ctype_digit($classID)) {
-                Output::i()->title = 'Dodaj ucznia';
                 $class = StudentClass::load($classID);
                 Output::i()->addBreadcrumb(
                     [

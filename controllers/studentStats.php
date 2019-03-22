@@ -114,9 +114,10 @@ class StudentStats extends Controller
                         );
                         $mark->_new = true;
                         $mark->save();
-                        $class = $this->student->getClass();
+
                         Output::i()->redirect("?s=subjectInfo&class={$class->id}&subject={$subject->id}");
                     } else {
+
                         Output::i()->add($template);
                     }
                 } catch (\Exception $e) {
