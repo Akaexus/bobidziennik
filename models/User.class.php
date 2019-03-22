@@ -40,7 +40,7 @@ class User extends ActiveRecord
             ]
         );
         if ($students) {
-            return true;
+            return $students[0]['id'];
         } else {
             return false;
         }

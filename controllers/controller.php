@@ -23,6 +23,9 @@ abstract class Controller
         'timetable' => [
             'permissions'=> ['u']
         ],
+        'account' => [
+            'permissions'=> ['u']
+        ],
         'logout' => [
             'permissions'=> ['u']
         ],
