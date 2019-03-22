@@ -11,7 +11,6 @@ class Student extends ActiveRecord
         'imie',
         'nazwisko',
         'pesel',
-        'photo',
         'nr_dziennika',
     ];
 
