@@ -1,25 +1,25 @@
 <h2>Dane ucznia</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th colspan="2">{$student->imie} {$student->nazwisko}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Pesel</td>
-				<td>{$student->pesel}</td>
-			</tr>
-			<tr>
-				<td>Klasa</td>
-				<td>{$studentClass->symbol} {$studentClass->nazwa}</td>
-			</tr>
-			<tr>
-				<td>Wychowawca</td>
-				<td>{$studentLeader->imie} {$studentLeader->nazwisko}</td>
-			</tr>
-		</tbody>
-	</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2">{$student->imie} {$student->nazwisko}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pesel</td>
+                <td>{$student->pesel}</td>
+            </tr>
+            <tr>
+                <td>Klasa</td>
+                <td>{$studentClass->symbol} {$studentClass->nazwa}</td>
+            </tr>
+            <tr>
+                <td>Wychowawca</td>
+                <td>{$studentLeader->imie} {$studentLeader->nazwisko}</td>
+            </tr>
+        </tbody>
+    </table>
 
 {if User::loggedIn()->isNauczyciel()}
 	<a href="?s=studentStats&do=edit&id={$student->id}" class="button">Edytuj</a>
@@ -27,22 +27,22 @@
 
 <h2>Oceny</h2>
 
-	<table class="table">
-		<thead>
-		</thead>
-		<tbody>
-			{foreach $subjects as $subject}
-				<tr>
-					<td>{$subject->nazwa}</td>
-					<td>
-						{foreach $marks as $mark}
-							{if $mark->id_przedmiotu === $subject->id}
-									<div>{$mark->ocena}</div>
-							{/if}
-						{/foreach}
-					</td>
-				</tr>
-			{/foreach}
-		</tbody>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            {foreach $subjects as $subject}
+                <tr>
+                    <td>{$subject->nazwa}</td>
+                    <td>
+                        {foreach $marks as $mark}
+                            {if $mark->id_przedmiotu === $subject->id}
+                                    <div>{$mark->ocena}</div>
+                            {/if}
+                        {/foreach}
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
 
-	</table>
+    </table>
